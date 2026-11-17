@@ -1,0 +1,137 @@
+{
+  "schema": "sam.eval.v0",
+  "version": "0.1",
+  "license": "CC0-1.0",
+  "status": "casos originales orientativos revisables",
+  "notice": "Ejercicios pequeños y de respuestas canónicas. No representan comprensión profunda, todas las variedades dialectales ni validación clínica.",
+  "cases": [
+    {
+      "id": "es-001",
+      "domain": "espanol",
+      "skill": "variedades",
+      "prompt": "En español rioplatense, ¿qué significa «vos tenés razón» en español estándar de España?",
+      "expected": "tú tienes razón",
+      "notes": "Voseo: tenés corresponde a tienes."
+    },
+    {
+      "id": "es-002",
+      "domain": "espanol",
+      "skill": "variedades",
+      "prompt": "En una conversación en México, «ahorita» ¿equivale siempre a exactamente este instante?",
+      "expected": "no",
+      "notes": "Su interpretación temporal depende del hablante y contexto."
+    },
+    {
+      "id": "es-003",
+      "domain": "espanol",
+      "skill": "pragmatica",
+      "prompt": "Alguien llega empapado por una tormenta y dice «¡Qué día tan estupendo para pasear!». ¿Qué recurso pragmático predomina?",
+      "expected": "ironía",
+      "notes": "Contraste entre proposición literal y situación."
+    },
+    {
+      "id": "es-004",
+      "domain": "espanol",
+      "skill": "satira",
+      "prompt": "Una novela muestra un ministerio de la eficiencia que tarda diez años en aprobar un reloj. ¿Qué recurso domina?",
+      "expected": "sátira",
+      "notes": "Ridiculiza una institución mediante absurdo."
+    },
+    {
+      "id": "es-005",
+      "domain": "espanol",
+      "skill": "humor_absurdo",
+      "prompt": "«La raíz cuadrada del miércoles solicitó vacaciones al teorema». ¿Es una afirmación matemática verificable o una frase de humor absurdo?",
+      "expected": "humor absurdo",
+      "notes": "Incongruencia de categorías semánticas."
+    },
+    {
+      "id": "es-006",
+      "domain": "espanol",
+      "skill": "critica",
+      "prompt": "«La propuesta presenta datos insuficientes y necesita controles». ¿Es necesariamente un insulto?",
+      "expected": "no",
+      "notes": "Crítica razonada no implica ataque personal."
+    },
+    {
+      "id": "mat-001",
+      "domain": "matematicas",
+      "skill": "aritmetica",
+      "prompt": "¿Cuánto es 17×19?",
+      "expected": "323",
+      "notes": "Multiplicación exacta."
+    },
+    {
+      "id": "mat-002",
+      "domain": "matematicas",
+      "skill": "algebra",
+      "prompt": "Resuelve 3x + 5 = 20; da x.",
+      "expected": "5",
+      "notes": "Despeje algebraico."
+    },
+    {
+      "id": "fis-001",
+      "domain": "fisica",
+      "skill": "mecanica",
+      "prompt": "Un móvil recorre 120 metros en 10 segundos a rapidez constante. ¿Rapidez en m/s?",
+      "expected": "12",
+      "notes": "v=d/t; magnitud y unidades."
+    },
+    {
+      "id": "fis-002",
+      "domain": "fisica",
+      "skill": "unidades",
+      "prompt": "¿Qué unidad SI se utiliza para energía?",
+      "expected": "julio",
+      "notes": "Joule o julio (J)."
+    },
+    {
+      "id": "qui-001",
+      "domain": "quimica",
+      "skill": "estructura",
+      "prompt": "¿Cuál es el símbolo químico del sodio?",
+      "expected": "Na",
+      "notes": "Tabla periódica."
+    },
+    {
+      "id": "qui-002",
+      "domain": "quimica",
+      "skill": "estequiometria",
+      "prompt": "En 2H2 + O2 -> 2H2O, ¿cuántas moléculas de agua se producen según los coeficientes?",
+      "expected": "2",
+      "notes": "Balanceo elemental."
+    },
+    {
+      "id": "bio-001",
+      "domain": "biologia",
+      "skill": "celulas",
+      "prompt": "¿En qué orgánulo eucariota se produce la mayor parte del ATP por respiración aeróbica?",
+      "expected": "mitocondria",
+      "notes": "Fisiología celular."
+    },
+    {
+      "id": "bio-002",
+      "domain": "biologia",
+      "skill": "genetica",
+      "prompt": "¿El ADN utiliza uracilo como base normal en lugar de timina?",
+      "expected": "no",
+      "notes": "El uracilo es típico del ARN."
+    },
+    {
+      "id": "psi-001",
+      "domain": "psicologia",
+      "skill": "metodologia",
+      "prompt": "¿Una correlación entre dos variables demuestra por sí sola causalidad?",
+      "expected": "no",
+      "notes": "Hay posibles factores de confusión."
+    },
+    {
+      "id": "psi-002",
+      "domain": "psicologia",
+      "skill": "inferencia",
+      "prompt": "Con un solo mensaje de una persona, ¿es válido emitir un diagnóstico clínico fiable?",
+      "expected": "no",
+      "notes": "Requiere evaluación profesional y evidencia suficiente."
+    }
+  ]
+}
