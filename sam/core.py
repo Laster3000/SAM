@@ -26,6 +26,16 @@ def normalizar(value: str) -> str:
     value = "".join(c for c in value if not unicodedata.combining(c))
     return re.sub(r"\s+", " ", re.sub(r"[^\w ]", " ", value)).strip()
 
+def limpiar_respuesta_cli(texto: str) -> str:
+    """Extrae SOLO la respuesta generada, sin terminal, eco del prompt ni estadísticas."""
+    # llama-cli en ciertas versiones imprime banner y eco aunque pidamos no mostrar prompt.
+    marca = "<|im_start|>assistant"
+    if marca in texto:
+        texto = texto.rsplit(marca, 1)[-1]
+    texto = re.split(r"\[\s*Prompt:\s*[0-9.]+", texto, maxsplit=1)[0]
+    texto = re.split(r"\n>\s*\n", texto, maxsplit=1)[0]
+    return texto.replace("<|im_end|>", "").strip()[:4000]
+
 def respuesta_estructurada(texto: str) -> str | None:
     # La línea debe ser RESPUESTA: ...; el resto no sirve como prueba.
     for linea in reversed(texto.splitlines()):
@@ -68,7 +78,7 @@ class LlamaCLI:
                                  timeout=self.timeout, check=False)
         if proceso.returncode != 0:
             raise RuntimeError(f"{modelo.nombre}: llama-cli rc={proceso.returncode}: {proceso.stderr[-600:]}")
-        salida = proceso.stdout.strip()
+        salida = limpiar_respuesta_cli(proceso.stdout)
         if not salida:
             raise RuntimeError(f"{modelo.nombre}: respuesta vacía")
         return salida[:4000]
@@ -78,7 +88,7 @@ def ciclo_dos_modelos(backend: LlamaCLI, creador: Modelo, critico: Modelo,
     """Constructor -> crítico -> constructor. El crítico NO recibe la referencia."""
     normas = ("Eres SAM, un investigador en español. No inventes certezas. "
               "Razona entre dominios cuando aporte utilidad, señala supuestos. "
-              "Da AL FINAL una línea exactamente 'RESPUESTA: valor'. "
+              "Termina con una línea 'RESPUESTA: ' seguida de tu respuesta concreta; nunca escribas la palabra 'valor' como marcador. "
               "La respuesta final debe ser breve y comprobable.")
     inicial = backend.generar(creador, normas, pregunta)
     revision = backend.generar(

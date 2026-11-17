@@ -1,6 +1,6 @@
 import unittest
 from dataclasses import dataclass
-from sam.core import normalizar, evaluar, respuesta_estructurada, capsula_candidata, ciclo_dos_modelos, Modelo
+from sam.core import normalizar, evaluar, respuesta_estructurada, capsula_candidata, ciclo_dos_modelos, Modelo, limpiar_respuesta_cli
 from sam.agents import Agente, combinar_candidato, podar_candidato
 
 class BackendFalso:
@@ -11,6 +11,9 @@ class BackendFalso:
         return ["RESPUESTA: error", "Falta comprobar unidades y supuestos", "RESPUESTA: 323"][self.n-1]
 
 class TestSAM(unittest.TestCase):
+    def test_limpiar_llama_cli(self):
+        salida = "Loading model...\n> <|im_start|>assistant\nRESPUESTA: ironía\n[ Prompt: 15.0 t/s ]\n> \n\nExiting..."
+        self.assertEqual(limpiar_respuesta_cli(salida),"RESPUESTA: ironía")
     def test_normalizacion(self):
         self.assertEqual(normalizar("¡SÍ!"), "si")
     def test_estricto(self):
