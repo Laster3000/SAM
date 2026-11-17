@@ -19,12 +19,16 @@ permissions:
   contents: write
   actions: write
 concurrency:
-  group: sam-lab-candidates
+  # Main y laboratorio experimental no comparten cola; evita cancelación de pendientes.
+  group: sam-lab-${{ github.ref }}
   cancel-in-progress: false
 jobs:
   evoluciona-y-prueba:
     runs-on: ubuntu-24.04
     timeout-minutes: 40
+    env:
+      # En pruebas de rama no escribir en el mismo ledger que main.
+      SAM_CANDIDATE_BRANCH: ${{ github.ref == 'refs/heads/main' && 'sam-candidates' || 'sam-r008-candidates' }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -39,9 +43,9 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p .sam-state resultados
-          git fetch --no-tags --depth=1 origin refs/heads/sam-candidates:refs/remotes/origin/sam-candidates
-          if git cat-file -e origin/sam-candidates:state/eventos.jsonl 2>/dev/null; then
-            git show origin/sam-candidates:state/eventos.jsonl > .sam-state/importar-eventos.jsonl
+          git fetch --no-tags --depth=1 origin refs/heads/$SAM_CANDIDATE_BRANCH:refs/remotes/origin/$SAM_CANDIDATE_BRANCH
+          if git cat-file -e origin/$SAM_CANDIDATE_BRANCH:state/eventos.jsonl 2>/dev/null; then
+            git show origin/$SAM_CANDIDATE_BRANCH:state/eventos.jsonl > .sam-state/importar-eventos.jsonl
             python3 -m sam.quality .sam-state/importar-eventos.jsonl
             echo "RECUPERADO_HISTORIAL_VALIDADO $(wc -l < .sam-state/importar-eventos.jsonl)"
           fi
@@ -99,7 +103,7 @@ jobs:
           test -s .sam-state/eventos.jsonl
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git worktree add -B sam-candidates /tmp/sam-candidates origin/sam-candidates
+          git worktree add -B "$SAM_CANDIDATE_BRANCH" /tmp/sam-candidates "origin/$SAM_CANDIDATE_BRANCH"
           mkdir -p /tmp/sam-candidates/state /tmp/sam-candidates/runs /tmp/sam-candidates/auto-propuestas
           cp .sam-state/eventos.jsonl /tmp/sam-nuevos-eventos.jsonl
           cp resultados/sam-*.json /tmp/
@@ -118,7 +122,7 @@ jobs:
           (cd "$GITHUB_WORKSPACE" && python3 -m sam.quality /tmp/sam-candidates/state/eventos.jsonl --manifest /tmp/sam-candidates/state/ledger-manifest.json)
           git add state/eventos.jsonl state/ledger-manifest.json runs/ auto-propuestas/
           git commit -m "SAM: experiencias candidatas GitHub run $GITHUB_RUN_ID"
-          git push origin HEAD:refs/heads/sam-candidates
+          git push origin "HEAD:refs/heads/$SAM_CANDIDATE_BRANCH"
           echo "CANDIDATOS_PUBLICADOS_NO_CANONICOS: $GITHUB_RUN_ID"
       - name: Artefactos de continuidad (no canon, 90 días)
         if: always()
