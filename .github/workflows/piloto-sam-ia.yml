@@ -1,4 +1,4 @@
-name: SAM - piloto IA dual gratuito
+name: SAM - laboratorio recurrente IA abierta
 on:
   push:
     paths:
@@ -7,66 +7,113 @@ on:
       - ".github/workflows/piloto-sam-ia.yml"
   workflow_dispatch:
   schedule:
-    - cron: "17 4 * * 1"
+    # 4 rondas/día de pruebas de software, NO alquiler continuo de cómputo
+    - cron: "23 2,8,14,20 * * *"
 permissions:
-  contents: read
+  contents: write
 concurrency:
-  group: sam-duelo-gratuito
-  cancel-in-progress: true
+  group: sam-lab-candidates
+  cancel-in-progress: false
 jobs:
-  prueba-y-evolucion-candidata:
+  evoluciona-y-prueba:
     runs-on: ubuntu-24.04
     timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
         with:
-          persist-credentials: false
-      - name: Contratos locales sin modelos
-        run: python3 -m unittest discover -s tests -v
-      - name: Descargar llama.cpp CPU de release pública fijada
+          persist-credentials: true
+          fetch-depth: 1
+      - name: Tests del software y amplitud curricular
+        run: |
+          python3 -m unittest discover -s tests -v
+          python3 -m sam.worker --dry-run
+      - name: Recuperar experiencias previas aisladas (NO canon)
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p runtime
-          curl -fLsS --retry 2 --max-time 180 \
-            https://github.com/ggml-org/llama.cpp/releases/download/b12483/llama-b12483-bin-ubuntu-x64.tar.gz \
-            -o runtime/llama.tar.gz
-          tar -xzf runtime/llama.tar.gz -C runtime
+          mkdir -p .sam-state resultados
+          git fetch --no-tags --depth=1 origin refs/heads/sam-candidates:refs/remotes/origin/sam-candidates
+          if git cat-file -e origin/sam-candidates:state/eventos.jsonl 2>/dev/null; then
+            git show origin/sam-candidates:state/eventos.jsonl > .sam-state/importar-eventos.jsonl
+            echo "RECUPERADO_HISTORIAL_CANDIDATO $(wc -l < .sam-state/importar-eventos.jsonl)"
+          fi
+      - uses: actions/cache@v4
+        with:
+          key: sam-llama-b12483-qwen-small-v2
+          path: runtime
+      - name: Preparar llama.cpp CPU y modelos GGUF fijados
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p runtime/modelos
+          if test ! -e runtime/llama.tar.gz; then
+            curl -fLsS --retry 2 --max-time 180 \
+              https://github.com/ggml-org/llama.cpp/releases/download/b12483/llama-b12483-bin-ubuntu-x64.tar.gz \
+              -o runtime/llama.tar.gz
+          fi
+          echo "41a1d0df0abbec1c48b506f347781e4b3d10f74423f0b6359f8b277df7e09a0a  runtime/llama.tar.gz" | sha256sum -c -
+          if ! find runtime -type f -name llama-cli | grep -q .; then
+            tar -xzf runtime/llama.tar.gz -C runtime
+          fi
           CLI=$(find runtime -type f -name llama-cli | head -n 1)
           test -n "$CLI"
           chmod +x "$CLI"
           echo "LLAMA_BIN=$CLI" >> "$GITHUB_ENV"
           echo "LD_LIBRARY_PATH=$(dirname "$CLI")" >> "$GITHUB_ENV"
+          if test ! -e runtime/modelos/qwen3.gguf; then
+            curl -fLsS --retry 2 --max-time 360 \
+              https://huggingface.co/ggml-org/Qwen3-0.6B-GGUF/resolve/main/Qwen3-0.6B-Q4_0.gguf \
+              -o runtime/modelos/qwen3.gguf
+          fi
+          if test ! -e runtime/modelos/qwen25.gguf; then
+            curl -fLsS --retry 2 --max-time 360 \
+              https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct-GGUF/resolve/main/qwen2.5-0.5b-instruct-q4_k_m.gguf \
+              -o runtime/modelos/qwen25.gguf
+          fi
+          echo "da2572f16c06133561ce56accaa822216f2391ef4d37fba427801cd6736417d4  runtime/modelos/qwen3.gguf" | sha256sum -c -
+          echo "74a4da8c9fdbcd15bd1f6d01d621410d31c6fc00986f5eb687824e7b93d7a9db  runtime/modelos/qwen25.gguf" | sha256sum -c -
           "$CLI" --version
-      - name: Descargar 2 GGUF abiertos y pequeños (menos de 1 GB juntos)
-        shell: bash
-        run: |
-          set -euo pipefail
-          mkdir -p runtime/modelos
-          curl -fLsS --retry 2 --max-time 360 \
-            https://huggingface.co/ggml-org/Qwen3-0.6B-GGUF/resolve/main/Qwen3-0.6B-Q4_0.gguf \
-            -o runtime/modelos/qwen3.gguf
-          curl -fLsS --retry 2 --max-time 360 \
-            https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct-GGUF/resolve/main/qwen2.5-0.5b-instruct-q4_k_m.gguf \
-            -o runtime/modelos/qwen25.gguf
-          test "$(stat -c %s runtime/modelos/qwen3.gguf)" -gt 100000000
-          test "$(stat -c %s runtime/modelos/qwen25.gguf)" -gt 100000000
-          sha256sum runtime/modelos/*.gguf
-      - name: Ejecutar SAM con dos modelos reales
+      - name: SAM evoluciona - lote de 12 experimentos rotativos
         env:
           OMP_NUM_THREADS: "2"
         run: |
-          mkdir -p resultados
-          python3 -m sam.pilot --mode evolucion --limit 2 --max-tokens 96 \
-            --llama-cli "$LLAMA_BIN" \
+          python3 -m sam.worker \
             --model-a runtime/modelos/qwen3.gguf \
             --model-b runtime/modelos/qwen25.gguf \
-            --out resultados/sam-piloto.json
-      - name: Resultados candidatos pendientes de TCSA3000
+            --llama-cli "$LLAMA_BIN" \
+            --state .sam-state --reports resultados \
+            --batch 12 --max-cycles 1 --interval 0 --min-free-gb 1.0
+      - name: Archivo durable en rama sam-candidates, no en main ni en TCSA
+        shell: bash
+        env:
+          GH_TOKEN: ${{{ github.token }}
+        run: |
+          set -euo pipefail
+          test -s .sam-state/eventos.jsonl
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git worktree add -B sam-candidates /tmp/sam-candidates origin/sam-candidates
+          mkdir -p /tmp/sam-candidates/state /tmp/sam-candidates/runs
+          cp .sam-state/eventos.jsonl /tmp/sam-nuevos-eventos.jsonl
+          cp resultados/sam-*.json /tmp/
+          cd /tmp/sam-candidates
+          test ! -f state/eventos.jsonl || test "$(stat -c %s state/eventos.jsonl)" -lt 104857600
+          cat /tmp/sam-nuevos-eventos.jsonl >> state/eventos.jsonl
+          for f in /tmp/sam-*.json; do
+            test -f "$f" || continue
+            cp "$f" runs/
+          done
+          git add state/eventos.jsonl runs/
+          git commit -m "SAM: experiencias candidatas GitHub run $GITHUB_RUN_ID"
+          git push origin HEAD:refs/heads/sam-candidates
+          echo "CANDIDATOS_PUBLICADOS_NO_CANONICOS: $GITHUB_RUN_ID"
+      - name: Artefactos de continuidad (no canon, 90 días)
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: sam-candidatos-no-canonicos
-          path: resultados/*.json
+          name: sam-lote-candidatos
+          path: |
+            resultados/*.json
+            .sam-state/eventos.jsonl
           if-no-files-found: warn
-          retention-days: 7
+          retention-days: 90
