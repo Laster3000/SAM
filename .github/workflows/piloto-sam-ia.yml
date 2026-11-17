@@ -6,11 +6,18 @@ on:
       - "tests/**"
       - ".github/workflows/piloto-sam-ia.yml"
   workflow_dispatch:
+    inputs:
+      chain_step:
+        description: "Etapa de ensayo GitHub; máximo 3 runs enlazados por activación"
+        required: false
+        type: string
+        default: "0"
   schedule:
     # 4 rondas/día de pruebas de software, NO alquiler continuo de cómputo
     - cron: "23 2,8,14,20 * * *"
 permissions:
   contents: write
+  actions: write
 concurrency:
   group: sam-lab-candidates
   cancel-in-progress: false
@@ -83,7 +90,7 @@ jobs:
             --model-b runtime/modelos/qwen25.gguf \
             --llama-cli "$LLAMA_BIN" \
             --state .sam-state --reports resultados \
-            --batch 12 --holdout-cases 2 --research-topics 2 --max-cycles 1 --interval 0 --min-free-gb 1.0
+            --batch 12 --holdout-cases 2 --research-topics 2 --max-cycles 2 --interval 0 --min-free-gb 1.0
           python3 -m sam.quality .sam-state/eventos.jsonl --manifest .sam-state/ledger-manifest.json
       - name: Archivo durable en rama sam-candidates, no en main ni en TCSA
         shell: bash
@@ -119,3 +126,32 @@ jobs:
             .sam-state/ledger-manifest.json
           if-no-files-found: warn
           retention-days: 90
+
+      - name: Siguiente ejecución GitHub después de archivar (con cuota de CI)
+        if: ${{ success() }}
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CHAIN_STEP: ${{ inputs.chain_step || '0' }}
+        run: |
+          set -euo pipefail
+          NEXT="$(python3 -m sam.chain --current "$CHAIN_STEP" --limit 3)"
+          if [ "$NEXT" = "STOP" ]; then
+            echo "SAM_CHAIN_BUDGET_COMPLETE: hasta próximo disparador schedule/manual, no 24/7"
+            exit 0
+          fi
+          echo "SAM_CHAIN_REQUESTED current=$CHAIN_STEP next=$NEXT"
+          PAYLOAD="$(jq -nc --arg step "$NEXT" '{ref:"main",inputs:{chain_step:$step}}')"
+          CODE="$(curl --silent --show-error --location --retry 2 --max-time 30 --output /tmp/sam-dispatch-response.json --write-out '%{http_code}' \
+            --request POST \
+            --header "Accept: application/vnd.github+json" \
+            --header "Authorization: Bearer $GH_TOKEN" \
+            --header "X-GitHub-Api-Version: 2022-11-28" \
+            --data "$PAYLOAD" \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/workflows/piloto-sam-ia.yml/dispatches")"
+          if [ "$CODE" != "204" ]; then
+            echo "SAM_CHAIN_DISPATCH_FAILED: status=$CODE (sin reintento infinito)"
+            cat /tmp/sam-dispatch-response.json || true
+            exit 1
+          fi
+          echo "SAM_CHAIN_DISPATCH_ACCEPTED: next=$NEXT (GitHub la pone en cola)"
