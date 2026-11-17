@@ -14,6 +14,7 @@ from .curriculum import cargar
 from .core import Modelo, LlamaCLI, PENDING, digest_file
 from .learning import Memoria, ejecutar_sesion
 from .research import investigar_lote
+from .quality import separar
 
 def ejecutar(argv=None):
     p=argparse.ArgumentParser(prog="python -m sam.worker",description="Worker SAM de evolución repetida")
@@ -30,15 +31,17 @@ def ejecutar(argv=None):
     p.add_argument("--min-free-gb",type=float,default=1.0)
     p.add_argument("--max-state-mb",type=int,default=256)
     p.add_argument("--research-topics",type=int,default=0,help="Hasta 3 temas públicos por ciclo; sin certificación automática")
+    p.add_argument("--holdout-cases",type=int,default=2,help="Casos ciegos por ciclo; nunca usan memoria")
     p.add_argument("--dry-run",action="store_true")
     a=p.parse_args(argv)
-    if a.batch<1 or a.batch>100 or a.interval<0 or a.min_free_gb<0.1 or a.max_state_mb<16 or not 0<=a.research_topics<=3:
+    if a.batch<1 or a.batch>100 or a.interval<0 or a.min_free_gb<0.1 or a.max_state_mb<16 or not 0<=a.research_topics<=3 or not 0<=a.holdout_cases<=4:
         p.error("Parámetros fuera de límites")
     tareas=cargar(a.eval_dir)
+    practica,reservadas=separar(tareas)
     if a.dry_run:
         resumen={}
         for t in tareas: resumen[t.domain]=resumen.get(t.domain,0)+1
-        print(json.dumps({"curriculum_total":len(tareas),"dominios":resumen},ensure_ascii=False))
+        print(json.dumps({"curriculum_total":len(tareas),"train":len(practica),"holdout":len(reservadas),"dominios":resumen},ensure_ascii=False))
         return 0
     if not a.model_a or not a.model_b:
         p.error("Se requieren las rutas a dos modelos GGUF reales")
@@ -74,7 +77,12 @@ def ejecutar(argv=None):
                 print("SAM_PAUSA_PROTECCION_DISCO",round(free,2),round(tam,2),file=sys.stderr)
                 return 3
             try:
-                resultado=ejecutar_sesion(mem,tareas,modelos,backend,a.batch)
+                resultado=ejecutar_sesion(mem,practica,modelos,backend,a.batch)
+                if a.holdout_cases:
+                    resultado["holdout"]=ejecutar_sesion(
+                        mem,reservadas,modelos,backend,a.holdout_cases,holdout=True)
+                    print("SAM_HOLDOUT",resultado["holdout"]["resumen"],
+                          "sin memoria, sin entrenamiento",flush=True)
                 if a.research_topics:
                     resultado["investigacion_externa"]=investigar_lote(
                         mem,backend,modelos,a.research_topics)

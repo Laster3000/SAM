@@ -35,7 +35,8 @@ jobs:
           git fetch --no-tags --depth=1 origin refs/heads/sam-candidates:refs/remotes/origin/sam-candidates
           if git cat-file -e origin/sam-candidates:state/eventos.jsonl 2>/dev/null; then
             git show origin/sam-candidates:state/eventos.jsonl > .sam-state/importar-eventos.jsonl
-            echo "RECUPERADO_HISTORIAL_CANDIDATO $(wc -l < .sam-state/importar-eventos.jsonl)"
+            python3 -m sam.quality .sam-state/importar-eventos.jsonl
+            echo "RECUPERADO_HISTORIAL_VALIDADO $(wc -l < .sam-state/importar-eventos.jsonl)"
           fi
       - uses: actions/cache@v4
         with:
@@ -82,7 +83,8 @@ jobs:
             --model-b runtime/modelos/qwen25.gguf \
             --llama-cli "$LLAMA_BIN" \
             --state .sam-state --reports resultados \
-            --batch 12 --research-topics 2 --max-cycles 1 --interval 0 --min-free-gb 1.0
+            --batch 12 --holdout-cases 2 --research-topics 2 --max-cycles 1 --interval 0 --min-free-gb 1.0
+          python3 -m sam.quality .sam-state/eventos.jsonl --manifest .sam-state/ledger-manifest.json
       - name: Archivo durable en rama sam-candidates, no en main ni en TCSA
         shell: bash
         run: |
@@ -101,7 +103,8 @@ jobs:
             test -f "$f" || continue
             cp "$f" runs/
           done
-          git add state/eventos.jsonl runs/
+          PYTHONPATH="$GITHUB_WORKSPACE" python3 -m sam.quality state/eventos.jsonl --manifest state/ledger-manifest.json
+          git add state/eventos.jsonl state/ledger-manifest.json runs/
           git commit -m "SAM: experiencias candidatas GitHub run $GITHUB_RUN_ID"
           git push origin HEAD:refs/heads/sam-candidates
           echo "CANDIDATOS_PUBLICADOS_NO_CANONICOS: $GITHUB_RUN_ID"
@@ -113,5 +116,6 @@ jobs:
           path: |
             resultados/*.json
             .sam-state/eventos.jsonl
+            .sam-state/ledger-manifest.json
           if-no-files-found: warn
           retention-days: 90

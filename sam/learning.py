@@ -13,6 +13,7 @@ from pathlib import Path
 from uuid import uuid4
 from .core import Modelo, LlamaCLI, PENDING, ciclo_dos_modelos, capsula_candidata
 from .curriculum import Tarea
+from .quality import ejemplos_verificados, contexto_ejemplos
 
 def canonical_json(x: dict) -> str:
     return json.dumps(x, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
@@ -101,12 +102,14 @@ class Memoria:
         return out
 
     def agregar(self, run_id: str, task: Tarea, result: dict, *, success: bool,
-                error: str | None = None) -> dict:
+                error: str | None = None, evaluation_set: str | None = None) -> dict:
         ts=datetime.now(timezone.utc).isoformat()
         event_id=hashlib.sha256((run_id+"|"+task.id).encode()).hexdigest()
         payload={"id":task.id,"domain":task.domain,"skill":task.skill,"grade":task.grade,
                  "prompt":task.prompt,"reference":task.expected,
                  "result":result,"error":error,"source":task.source}
+        if evaluation_set:
+            payload["evaluation_set"]=evaluation_set
         evento={
             "evento_id":event_id,"run_id":run_id,"task_id":task.id,
             "domain":task.domain,"skill":task.skill,
@@ -130,32 +133,37 @@ class Memoria:
         return evento
 
 def ejecutar_sesion(memory: Memoria, tasks: list[Tarea], models: tuple[Modelo,Modelo],
-                   backend: LlamaCLI, limit: int = 12, max_failures: int = 3) -> dict:
+                   backend: LlamaCLI, limit: int = 12, max_failures: int = 3,
+                   *, holdout: bool = False) -> dict:
     run_id="sam-"+datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S")+"-"+uuid4().hex[:10]
     total=int(memory.con.execute("SELECT COUNT(DISTINCT run_id) FROM intentos").fetchone()[0])
     elegidas=memory.elegir(tasks,limit,total)
     reporte={"schema":"sam.learning_session.v1","run_id":run_id,
              "utc":datetime.now(timezone.utc).isoformat(),"mode":"EVOLUCION",
              "canonical_state":PENDING,"modelos":[x.nombre for x in models],
-             "task_ids":[x.id for x in elegidas],"cases":[],
+             "task_ids":[x.id for x in elegidas],"dataset":"holdout" if holdout else "practice","cases":[],
              "capsulas_candidatas":[],"errores":[]}
     failures=0
     for i,task in enumerate(elegidas):
         creator,critic=(models if i%2==0 else models[::-1])
         try:
-            result=ciclo_dos_modelos(backend,creator,critic,task.prompt,
+            ejemplos=[] if holdout else ejemplos_verificados(memory,task)
+            pregunta=task.prompt
+            if ejemplos:
+                pregunta+="\n\n"+contexto_ejemplos(ejemplos)
+            result=ciclo_dos_modelos(backend,creator,critic,pregunta,
                                     task.expected if task.grade=="exact" else None)
             ok=bool(result["evaluacion_final"]["verificada"]) if task.grade=="exact" else False
-            memory.agregar(run_id,task,result,success=ok)
+            memory.agregar(run_id,task,result,success=ok,evaluation_set="holdout" if holdout else "practice")
             reporte["cases"].append({"task_id":task.id,"domain":task.domain,
                                      "skill":task.skill,"grade":task.grade,
-                                     "correct":ok,"result":result})
+                                     "correct":ok,"ejemplos_recuperados":len(ejemplos),"result":result})
             if ok and task.expected and task.grade=="exact":
                 cap=capsula_candidata(task.id,result,task.expected,task.source)
                 if cap: reporte["capsulas_candidatas"].append(cap)
         except Exception as exc:
             failures+=1
-            memory.agregar(run_id,task,{},success=False,error=str(exc))
+            memory.agregar(run_id,task,{},success=False,error=str(exc),evaluation_set="holdout" if holdout else "practice")
             reporte["errores"].append({"task_id":task.id,"error":str(exc)[:500]})
             if failures>=max_failures:
                 reporte["interrumpida_por_fallos"]=True
