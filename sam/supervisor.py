@@ -22,8 +22,11 @@ def run_supervisor(args=None):
     p.add_argument("--batch",type=int,default=18)
     p.add_argument("--research-topics",type=int,default=2)
     p.add_argument("--delay",type=int,default=30)
+    p.add_argument("--interval",type=int,default=0,help="Segundos entre tandas completas; 0=lanzar siguiente inmediatamente")
+    p.add_argument("--max-state-mb",type=int,default=256)
+    p.add_argument("--min-free-gb",type=float,default=10.0)
     a=p.parse_args(args)
-    if a.delay<5 or a.delay>300:
+    if a.delay<5 or a.delay>300 or a.interval<0 or a.interval>300 or a.max_state_mb<16 or a.min_free_gb<1:
         p.error("La espera de recuperación debe estar entre 5 y 300 segundos")
     state=Path(a.state)
     state.mkdir(parents=True,exist_ok=True)
@@ -37,10 +40,12 @@ def run_supervisor(args=None):
             "--llama-cli",a.llama_cli,
             "--state",str(state),"--reports",a.reports,
             "--batch",str(a.batch),"--research-topics",str(a.research_topics),
-            "--interval","20","--max-cycles","0"]
+            "--interval",str(a.interval),"--max-cycles","0",
+            "--max-state-mb",str(a.max_state_mb),"--min-free-gb",str(a.min_free_gb)]
         start=time.monotonic()
         try:
-            proc=subprocess.Popen(cmd)
+            flags=getattr(subprocess,"BELOW_NORMAL_PRIORITY_CLASS",0)
+            proc=subprocess.Popen(cmd,creationflags=flags)
             code=proc.wait()
         except KeyboardInterrupt:
             if "proc" in locals() and proc.poll() is None:
