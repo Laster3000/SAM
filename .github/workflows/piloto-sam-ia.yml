@@ -103,7 +103,7 @@ jobs:
             test -f "$f" || continue
             cp "$f" runs/
           done
-          PYTHONPATH="$GITHUB_WORKSPACE" python3 -m sam.quality state/eventos.jsonl --manifest state/ledger-manifest.json
+          (cd "$GITHUB_WORKSPACE" && python3 -m sam.quality /tmp/sam-candidates/state/eventos.jsonl --manifest /tmp/sam-candidates/state/ledger-manifest.json)
           git add state/eventos.jsonl state/ledger-manifest.json runs/
           git commit -m "SAM: experiencias candidatas GitHub run $GITHUB_RUN_ID"
           git push origin HEAD:refs/heads/sam-candidates
