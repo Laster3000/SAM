@@ -13,6 +13,7 @@ import time
 from .curriculum import cargar
 from .core import Modelo, LlamaCLI, PENDING, digest_file
 from .learning import Memoria, ejecutar_sesion
+from .research import investigar_lote
 
 def ejecutar(argv=None):
     p=argparse.ArgumentParser(prog="python -m sam.worker",description="Worker SAM de evolución repetida")
@@ -28,9 +29,10 @@ def ejecutar(argv=None):
                    help="0: continuar hasta parada o guardarraíl")
     p.add_argument("--min-free-gb",type=float,default=1.0)
     p.add_argument("--max-state-mb",type=int,default=256)
+    p.add_argument("--research-topics",type=int,default=0,help="Hasta 3 temas públicos por ciclo; sin certificación automática")
     p.add_argument("--dry-run",action="store_true")
     a=p.parse_args(argv)
-    if a.batch<1 or a.batch>100 or a.interval<0 or a.min_free_gb<0.1 or a.max_state_mb<16:
+    if a.batch<1 or a.batch>100 or a.interval<0 or a.min_free_gb<0.1 or a.max_state_mb<16 or not 0<=a.research_topics<=3:
         p.error("Parámetros fuera de límites")
     tareas=cargar(a.eval_dir)
     if a.dry_run:
@@ -73,6 +75,13 @@ def ejecutar(argv=None):
                 return 3
             try:
                 resultado=ejecutar_sesion(mem,tareas,modelos,backend,a.batch)
+                if a.research_topics:
+                    resultado["investigacion_externa"]=investigar_lote(
+                        mem,backend,modelos,a.research_topics)
+                    print("SAM_INVESTIGACION_EXTERNA",
+                          len(resultado["investigacion_externa"]["topics"]),
+                          "errores",len(resultado["investigacion_externa"]["errors"]),
+                          "estatus",PENDING,flush=True)
                 outfile=reports/(resultado["run_id"]+".json")
                 tmp=outfile.with_suffix(".partial")
                 tmp.write_text(json.dumps(resultado,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")

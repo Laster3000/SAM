@@ -82,7 +82,7 @@ jobs:
             --model-b runtime/modelos/qwen25.gguf \
             --llama-cli "$LLAMA_BIN" \
             --state .sam-state --reports resultados \
-            --batch 12 --max-cycles 1 --interval 0 --min-free-gb 1.0
+            --batch 12 --research-topics 2 --max-cycles 1 --interval 0 --min-free-gb 1.0
       - name: Archivo durable en rama sam-candidates, no en main ni en TCSA
         shell: bash
         run: |
