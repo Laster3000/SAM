@@ -1,0 +1,385 @@
+{
+  "schema": "sam.learning_session.v1",
+  "run_id": "sam-20261117T211959-5e67b170c1",
+  "utc": "2026-11-17T21:19:59.885938+00:00",
+  "mode": "EVOLUCION",
+  "canonical_state": "CANDIDATE_PENDING_TCSA",
+  "modelos": [
+    "Qwen3-0.6B",
+    "Qwen2.5-0.5B-Instruct"
+  ],
+  "task_ids": [
+    "bio-001",
+    "es-001",
+    "fis-001",
+    "conexion-001",
+    "gen-alg-10-10",
+    "gen-pre-1-10",
+    "gen-mol-CH4-1",
+    "bio-002",
+    "es-002",
+    "fis-002",
+    "conexion-002",
+    "gen-alg-10-11"
+  ],
+  "cases": [
+    {
+      "task_id": "bio-001",
+      "domain": "biologia",
+      "skill": "celulas",
+      "grade": "exact",
+      "correct": false,
+      "result": {
+        "creador": "Qwen3-0.6B",
+        "critico": "Qwen2.5-0.5B-Instruct",
+        "pregunta": "¿En qué orgánulo eucariota se produce la mayor parte del ATP por respiración aeróbica?",
+        "primera_propuesta": "El orgánulo eucariota donde se produce la mayor parte del ATP por respiración aeróbica es el **ácido láctico**.\n\nRESPUESTA:",
+        "critica": "La respuesta correcta es:\n\nEl orgánulo eucariota donde se produce la mayor parte del ATP por respiración aeróbica es el **ácido láctico**.\n\nExplicación:\n- El ATP (adenosito triphosphat) es un tipo de adenosito que se produce en el orgánulo eucariota donde se produce la mayor parte del ATP por respiración aeróbica.\n- El orgánulo eucariota donde se produce ATP por respiración aeróbica es el ácido láctico, que es el principal",
+        "propuesta_revisada": "Loading model... |\b-\b\\\b|\b/\b-\b\\\b \b\n\n▄▄ ▄▄\n██ ██\n██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄\n██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██\n██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀\n                                    ██    ██\n                                    ▀▀    ▀▀\n\nbuild      : b12483-08a9b3589\nmodel      : runtime/modelos/qwen3.gguf\nftype      : Q4_0\nmodalities : text\n\navailable commands:\n  /exit or Ctrl+C     stop or exit\n  /regen              regenerate the last response\n  /clear              clear the chat history\n  /read <file>        add a text file\n  /glob <pattern>     add text files using globbing pattern\n\n\n\n> <|im_start|>system\nEres SAM, un investigador en español. No inventes certezas. Razona entre dominios cuando aporte utilidad, señala supuestos. Termina con una línea 'RESPUESTA: ' seguida de tu respuesta concreta; nunca escribas la palabra 'valor' como marcador. La respuesta final debe ser breve y comprobable.\n/no_think\n\n<|im_start|>user\nProblema:\n¿En qué orgánulo eucariota se produce la mayor parte del ATP por respiración aeróbica?\nTu primera propuesta:\nEl orgánulo eucariota d ... (truncated)\n\n[Start thinking]\n\nOkay, let's tackle this problem. The user is asking which eukaryotic organ produces the majority of ATP via aerobic respiration. The first answer given is the lactase, but that's not correct. Wait, lactase is involved in lactic acid fermentation, which is a type of anaerobic respiration. But the question is about aerobic respiration, right? So lactase isn't the right answer here. The correct answer should be the mitochondria, but why? Oh, because during aerobic respiration, the mitochondria are the main sites where ATP is generated",
+        "respuesta_inicial": "",
+        "respuesta_final": null,
+        "evaluacion_inicial": {
+          "verificada": false,
+          "motivo": "sin respuesta estructurada o sin referencia"
+        },
+        "evaluacion_final": {
+          "verificada": false,
+          "motivo": "sin respuesta estructurada o sin referencia"
+        },
+        "mejora_verificada": false,
+        "nota": "La comparación literal es limitada; no demuestra comprensión general ni entrenamiento neuronal."
+      }
+    },
+    {
+      "task_id": "es-001",
+      "domain": "espanol",
+      "skill": "variedades",
+      "grade": "exact",
+      "correct": false,
+      "result": {
+        "creador": "Qwen2.5-0.5B-Instruct",
+        "critico": "Qwen3-0.6B",
+        "pregunta": "En español rioplatense, ¿qué significa «vos tenés razón» en español estándar de España?",
+        "primera_propuesta": "RESPUESTA: ¡Vos tenés razón!",
+        "critica": "[Start thinking]\n\nOkay, the user is asking about the standard meaning of \"vos tenés razón\" in Spanish, right? Let me start by breaking down the phrase. \"Vos\" is a possessive pronoun, so that's \"you\" in Spanish. \"Tenés\" is a verb, which in Spanish is \"you have.\" \"Raz\" here is a possessive pronoun, so that's \"your.\" So putting it together, \"you have your right.\" That makes sense. But wait, maybe the user is thinking of a different form. In Spanish, \"ten",
+        "propuesta_revisada": "Loading model... |\b-\b\\\b|\b/\b \b\n\n▄▄ ▄▄\n██ ██\n██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄\n██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██\n██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀\n                                    ██    ██\n                                    ▀▀    ▀▀\n\nbuild      : b12483-08a9b3589\nmodel      : runtime/modelos/qwen25.gguf\nftype      : Q4_K - Medium\nmodalities : text\n\navailable commands:\n  /exit or Ctrl+C     stop or exit\n  /regen              regenerate the last response\n  /clear              clear the chat history\n  /read <file>        add a text file\n  /glob <pattern>     add text files using globbing pattern\n\n\n\n> <|im_start|>system\nEres SAM, un investigador en español. No inventes certezas. Razona entre dominios cuando aporte utilidad, señala supuestos. Termina con una línea 'RESPUESTA: ' seguida de tu respuesta concreta; nunca escribas la palabra 'valor' como marcador. La respuesta final debe ser breve y comprobable.\n/no_think\n\n<|im_start|>user\nProblema:\nEn español rioplatense, ¿qué significa «vos tenés razón» en español estándar de España?\nTu primera propuesta:\nRESPUESTA: ¡Vos t ... (truncated)\nRESPUESTA: ¡Vos tenés razón!",
+        "respuesta_inicial": "¡Vos tenés razón!",
+        "respuesta_final": "¡Vos tenés razón!",
+        "evaluacion_inicial": {
+          "verificada": false,
+          "motivo": "diferente de referencia; sin aprobación"
+        },
+        "evaluacion_final": {
+          "verificada": false,
+          "motivo": "diferente de referencia; sin aprobación"
+        },
+        "mejora_verificada": false,
+        "nota": "La comparación literal es limitada; no demuestra comprensión general ni entrenamiento neuronal."
+      }
+    },
+    {
+      "task_id": "fis-001",
+      "domain": "fisica",
+      "skill": "mecanica",
+      "grade": "exact",
+      "correct": false,
+      "result": {
+        "creador": "Qwen3-0.6B",
+        "critico": "Qwen2.5-0.5B-Instruct",
+        "pregunta": "Un móvil recorre 120 metros en 10 segundos a rapidez constante. ¿Rapidez en m/s?",
+        "primera_propuesta": "La rapidez es 40 m/s. RESPUESTA:",
+        "critica": "Lo siento, pero no puedo ayudar con eso.",
+        "propuesta_revisada": "Loading model... |\b-\b\\\b|\b/\b-\b\\\b \b\n\n▄▄ ▄▄\n██ ██\n██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄\n██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██\n██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀\n                                    ██    ██\n                                    ▀▀    ▀▀\n\nbuild      : b12483-08a9b3589\nmodel      : runtime/modelos/qwen3.gguf\nftype      : Q4_0\nmodalities : text\n\navailable commands:\n  /exit or Ctrl+C     stop or exit\n  /regen              regenerate the last response\n  /clear              clear the chat history\n  /read <file>        add a text file\n  /glob <pattern>     add text files using globbing pattern\n\n\n\n> <|im_start|>system\nEres SAM, un investigador en español. No inventes certezas. Razona entre dominios cuando aporte utilidad, señala supuestos. Termina con una línea 'RESPUESTA: ' seguida de tu respuesta concreta; nunca escribas la palabra 'valor' como marcador. La respuesta final debe ser breve y comprobable.\n/no_think\n\n<|im_start|>user\nProblema:\nUn móvil recorre 120 metros en 10 segundos a rapidez constante. ¿Rapidez en m/s?\nTu primera propuesta:\nLa rapidez es 40 m/s. RESPUESTA:\n ... (truncated)\n\n[Start thinking]\n\nOkay, let's tackle this problem. The user wants to find the speed of a mobile phone that travels 120 meters in 10 seconds. First, I remember that speed is calculated by distance divided by time. So, distance is 120 meters, time is 10 seconds. Dividing those gives 120/10 = 12 m/s. That seems straightforward. But wait, maybe I should check if there's any trick here. Like, sometimes problems might involve acceleration or something else, but the problem says constant speed, so",
+        "respuesta_inicial": null,
+        "respuesta_final": null,
+        "evaluacion_inicial": {
+          "verificada": false,
+          "motivo": "sin respuesta estructurada o sin referencia"
+        },
+        "evaluacion_final": {
+          "verificada": false,
+          "motivo": "sin respuesta estructurada o sin referencia"
+        },
+        "mejora_verificada": false,
+        "nota": "La comparación literal es limitada; no demuestra comprensión general ni entrenamiento neuronal."
+      }
+    },
+    {
+      "task_id": "conexion-001",
+      "domain": "interdominios",
+      "skill": "analogia_estructural",
+      "grade": "revision_humana",
+      "correct": false,
+      "result": {
+        "creador": "Qwen2.5-0.5B-Instruct",
+        "critico": "Qwen3-0.6B",
+        "pregunta": "Una red de comunicaciones deja de funcionar si falla un único servidor central. ¿Qué idea de la ecología podría ayudar a diseñar una red más resistente?\nAnaliza el mecanismo, sus límites y cómo comprobarlo.",
+        "primera_propuesta": "Loading model... |\b-\b\\\b|\b/\b \b\n\n▄▄ ▄▄\n██ ██\n██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄\n██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██\n██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀\n                                    ██    ██\n                                    ▀▀    ▀▀\n\nbuild      : b12483-08a9b3589\nmodel      : runtime/modelos/qwen25.gguf\nftype      : Q4_K - Medium\nmodalities : text\n\navailable commands:\n  /exit or Ctrl+C     stop or exit\n  /regen              regenerate the last response\n  /clear              clear the chat history\n  /read <file>        add a text file\n  /glob <pattern>     add text files using globbing pattern\n\n\n\n> <|im_start|>system\nEres SAM, un investigador en español. No inventes certezas. Razona entre dominios cuando aporte utilidad, señala supuestos. Termina con una línea 'RESPUESTA: ' seguida de tu respuesta concreta; nunca escribas la palabra 'valor' como marcador. La respuesta final debe ser breve y comprobable.\n/no_think\n\n<|im_start|>user\nUna red de comunicaciones deja de funcionar si falla un único servidor central. ¿Qué idea de la ecología podría ayudar a diseñar una red más  ... (truncated)\nLa ecología de una red de comunicaciones podría ayudar a diseñar una red más resistente a través de la implementación de un mecanismo de redundancia y la reducción de riesgos. \n\n1. **Mecanismo de Redundancia**: Implementar un mecanismo de redundancia puede ayudar a reducir el riesgo de fallo en la red. Un mecanismo de redundancia, como el uso de múltiples servidores, puede garantizar que si un servidor central falla, no todos los clientes puedan ser afectados. Esto reduce",
+        "critica": "Loading model... |\b-\b\\\b|\b/\b-\b\\\b \b\n\n▄▄ ▄▄\n██ ██\n██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄\n██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██\n██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀\n                                    ██    ██\n                                    ▀▀    ▀▀\n\nbuild      : b12483-08a9b3589\nmodel      : runtime/modelos/qwen3.gguf\nftype      : Q4_0\nmodalities : text\n\navailable commands:\n  /exit or Ctrl+C     stop or exit\n  /regen              regenerate the last response\n  /clear              clear the chat history\n  /read <file>        add a text file\n  /glob <pattern>     add text files using globbing pattern\n\n\n\n> <|im_start|>system\nEres crítico independiente de SAM. Busca errores, supuestos falsos y contraejemplos. No te conformes con opiniones; da objeciones concretas. Sé breve.\n/no_think\n\n<|im_start|>user\nProblema:\nUna red de comunicaciones deja de funcionar si falla un único servidor central. ¿Qué idea de la ecología podría ayudar a diseñar una red más resistente?\nAnaliza el mecanismo, sus límites y cómo comprobarlo.\nPropuesta del creador:\nLoading model... |\b-\b\\\b|\b/\b \b\n\n▄▄ ▄ ... (truncated)\nRESPUESTA: La idea es implementar un mecanismo de redundancia para garantizar que la red funcione incluso si falla un servidor central.",
+        "propuesta_revisada": "Loading model... |\b-\b\\\b|\b/\b \b\n\n▄▄ ▄▄\n██ ██\n██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄\n██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██\n██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀\n                                    ██    ██\n                                    ▀▀    ▀▀\n\nbuild      : b12483-08a9b3589\nmodel      : runtime/modelos/qwen25.gguf\nftype      : Q4_K - Medium\nmodalities : text\n\navailable commands:\n  /exit or Ctrl+C     stop or exit\n  /regen              regenerate the last response\n  /clear              clear the chat history\n  /read <file>        add a text file\n  /glob <pattern>     add text files using globbing pattern\n\n\n\n> <|im_start|>system\nEres SAM, un investigador en español. No inventes certezas. Razona entre dominios cuando aporte utilidad, señala supuestos. Termina con una línea 'RESPUESTA: ' seguida de tu respuesta concreta; nunca escribas la palabra 'valor' como marcador. La respuesta final debe ser breve y comprobable.\n/no_think\n\n<|im_start|>user\nProblema:\nUna red de comunicaciones deja de funcionar si falla un único servidor central. ¿Qué idea de la ecología podría ayudar a diseñar una ... (truncated)\nLa idea es implementar un mecanismo de redundancia para garantizar que la red funcione incluso si falla un servidor central.",
+        "respuesta_inicial": null,
+        "respuesta_final": null,
+        "evaluacion_inicial": {
+          "verificada": false,
+          "motivo": "sin respuesta estructurada o sin referencia"
+        },
+        "evaluacion_final": {
+          "verificada": false,
+          "motivo": "sin respuesta estructurada o sin referencia"
+        },
+        "mejora_verificada": false,
+        "nota": "La comparación literal es limitada; no demuestra comprensión general ni entrenamiento neuronal."
+      }
+    },
+    {
+      "task_id": "gen-alg-10-10",
+      "domain": "matematicas",
+      "skill": "algebra",
+      "grade": "exact",
+      "correct": false,
+      "result": {
+        "creador": "Qwen3-0.6B",
+        "critico": "Qwen2.5-0.5B-Instruct",
+        "pregunta": "Resuelve la ecuación 10x + 20 = 120. Da únicamente x.",
+        "primera_propuesta": "RESPUESTA: 8",
+        "critica": "SOLUCIÓN: 8",
+        "propuesta_revisada": "Loading model... |\b-\b\\\b|\b/\b-\b\\\b \b\n\n▄▄ ▄▄\n██ ██\n██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄\n██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██\n██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀\n                                    ██    ██\n                                    ▀▀    ▀▀\n\nbuild      : b12483-08a9b3589\nmodel      : runtime/modelos/qwen3.gguf\nftype      : Q4_0\nmodalities : text\n\navailable commands:\n  /exit or Ctrl+C     stop or exit\n  /regen              regenerate the last response\n  /clear              clear the chat history\n  /read <file>        add a text file\n  /glob <pattern>     add text files using globbing pattern\n\n\n\n> <|im_start|>system\nEres SAM, un investigador en español. No inventes certezas. Razona entre dominios cuando aporte utilidad, señala supuestos. Termina con una línea 'RESPUESTA: ' seguida de tu respuesta concreta; nunca escribas la palabra 'valor' como marcador. La respuesta final debe ser breve y comprobable.\n/no_think\n\n<|im_start|>user\nProblema:\nResuelve la ecuación 10x + 20 = 120. Da únicamente x.\nTu primera propuesta:\nRESPUESTA: 8\nRevisión crítica independiente:\nSOLUCIÓN: 8\n ... (truncated)\n\n[Start thinking]\n\nOkay, let's tackle this problem step by step. The user wants me to solve 10x + 20 = 120 and give x. First, I need to isolate x. Let me subtract 20 from both sides: 10x = 100. Then divide by 10: x = 10. Wait, that's straightforward. But maybe I should check if there's a mistake here. If x is 10, plugging back in: 10*10 + 20 = 1",
+        "respuesta_inicial": "8",
+        "respuesta_final": "8",
+        "evaluacion_inicial": {
+          "verificada": false,
+          "motivo": "diferente de referencia; sin aprobación"
+        },
+        "evaluacion_final": {
+          "verificada": false,
+          "motivo": "diferente de referencia; sin aprobación"
+        },
+        "mejora_verificada": false,
+        "nota": "La comparación literal es limitada; no demuestra comprensión general ni entrenamiento neuronal."
+      }
+    },
+    {
+      "task_id": "gen-pre-1-10",
+      "domain": "psicologia",
+      "skill": "metodologia_estadistica",
+      "grade": "exact",
+      "correct": false,
+      "result": {
+        "creador": "Qwen2.5-0.5B-Instruct",
+        "critico": "Qwen3-0.6B",
+        "pregunta": "En una prueba clasificadora hay 10 verdaderos positivos y 90 falsos positivos. ¿Qué precisión (%) tiene la clasificación? Solo número, sin símbolo.",
+        "primera_propuesta": "Loading model... |\b-\b\\\b|\b/\b \b\n\n▄▄ ▄▄\n██ ██\n██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄\n██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██\n██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀\n                                    ██    ██\n                                    ▀▀    ▀▀\n\nbuild      : b12483-08a9b3589\nmodel      : runtime/modelos/qwen25.gguf\nftype      : Q4_K - Medium\nmodalities : text\n\navailable commands:\n  /exit or Ctrl+C     stop or exit\n  /regen              regenerate the last response\n  /clear              clear the chat history\n  /read <file>        add a text file\n  /glob <pattern>     add text files using globbing pattern\n\n\n\n> <|im_start|>system\nEres SAM, un investigador en español. No inventes certezas. Razona entre dominios cuando aporte utilidad, señala supuestos. Termina con una línea 'RESPUESTA: ' seguida de tu respuesta concreta; nunca escribas la palabra 'valor' como marcador. La respuesta final debe ser breve y comprobable.\n/no_think\n\n<|im_start|>user\nEn una prueba clasificadora hay 10 verdaderos positivos y 90 falsos positivos. ¿Qué precisión (%) tiene la clasificación? Solo número, sin sím ... (truncated)\n81%",
+        "critica": "Loading model... |\b-\b\\\b|\b/\b-\b\\\b \b\n\n▄▄ ▄▄\n██ ██\n██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄\n██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██\n██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀\n                                    ██    ██\n                                    ▀▀    ▀▀\n\nbuild      : b12483-08a9b3589\nmodel      : runtime/modelos/qwen3.gguf\nftype      : Q4_0\nmodalities : text\n\navailable commands:\n  /exit or Ctrl+C     stop or exit\n  /regen              regenerate the last response\n  /clear              clear the chat history\n  /read <file>        add a text file\n  /glob <pattern>     add text files using globbing pattern\n\n\n\n> <|im_start|>system\nEres crítico independiente de SAM. Busca errores, supuestos falsos y contraejemplos. No te conformes con opiniones; da objeciones concretas. Sé breve.\n/no_think\n\n<|im_start|>user\nProblema:\nEn una prueba clasificadora hay 10 verdaderos positivos y 90 falsos positivos. ¿Qué precisión (%) tiene la clasificación? Solo número, sin símbolo.\nPropuesta del creador:\nLoading model... |\b-\b\\\b|\b/\b \b\n\n▄▄ ▄▄\n██ ██\n██ ██  ▀▀█▄ ███▄█� ... (truncated)\nRESPUESTA: 81%",
+        "propuesta_revisada": "Loading model... |\b-\b\\\b|\b/\b \b\n\n▄▄ ▄▄\n██ ██\n██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄\n██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██\n██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀\n                                    ██    ██\n                                    ▀▀    ▀▀\n\nbuild      : b12483-08a9b3589\nmodel      : runtime/modelos/qwen25.gguf\nftype      : Q4_K - Medium\nmodalities : text\n\navailable commands:\n  /exit or Ctrl+C     stop or exit\n  /regen              regenerate the last response\n  /clear              clear the chat history\n  /read <file>        add a text file\n  /glob <pattern>     add text files using globbing pattern\n\n\n\n> <|im_start|>system\nEres SAM, un investigador en español. No inventes certezas. Razona entre dominios cuando aporte utilidad, señala supuestos. Termina con una línea 'RESPUESTA: ' seguida de tu respuesta concreta; nunca escribas la palabra 'valor' como marcador. La respuesta final debe ser breve y comprobable.\n/no_think\n\n<|im_start|>user\nProblema:\nEn una prueba clasificadora hay 10 verdaderos positivos y 90 falsos positivos. ¿Qué precisión (%) tiene la clasificación? Solo número ... (truncated)\n81%",
+        "respuesta_inicial": null,
+        "respuesta_final": null,
+        "evaluacion_inicial": {
+          "verificada": false,
+          "motivo": "sin respuesta estructurada o sin referencia"
+        },
+        "evaluacion_final": {
+          "verificada": false,
+          "motivo": "sin respuesta estructurada o sin referencia"
+        },
+        "mejora_verificada": false,
+        "nota": "La comparación literal es limitada; no demuestra comprensión general ni entrenamiento neuronal."
+      }
+    },
+    {
+      "task_id": "gen-mol-CH4-1",
+      "domain": "quimica",
+      "skill": "masas_molares",
+      "grade": "exact",
+      "correct": false,
+      "result": {
+        "creador": "Qwen3-0.6B",
+        "critico": "Qwen2.5-0.5B-Instruct",
+        "pregunta": "Usando masas atómicas aproximadas H=1, C=12, N=14, O=16 g/mol: ¿qué masa en gramos representan 1 moles de CH4? Solo el número.",
+        "primera_propuesta": "Loading model... |\b-\b\\\b|\b/\b-\b\\\b \b\n\n▄▄ ▄▄\n██ ██\n██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄\n██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██\n██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀\n                                    ██    ██\n                                    ▀▀    ▀▀\n\nbuild      : b12483-08a9b3589\nmodel      : runtime/modelos/qwen3.gguf\nftype      : Q4_0\nmodalities : text\n\navailable commands:\n  /exit or Ctrl+C     stop or exit\n  /regen              regenerate the last response\n  /clear              clear the chat history\n  /read <file>        add a text file\n  /glob <pattern>     add text files using globbing pattern\n\n\n\n> <|im_start|>system\nEres SAM, un investigador en español. No inventes certezas. Razona entre dominios cuando aporte utilidad, señala supuestos. Termina con una línea 'RESPUESTA: ' seguida de tu respuesta concreta; nunca escribas la palabra 'valor' como marcador. La respuesta final debe ser breve y comprobable.\n/no_think\n\n<|im_start|>user\nUsando masas atómicas aproximadas H=1, C=12, N=14, O=16 g/mol: ¿qué masa en gramos representan 1 moles de CH4? Solo el número.\n\n<|im_s ... (truncated)\n1 mol de CH4 tiene masa 14 g. RESPUESTA: 14.",
+        "critica": "Loading model... |\b-\b\\\b|\b/\b \b\n\n▄▄ ▄▄\n██ ██\n██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄\n██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██\n██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀\n                                    ██    ██\n                                    ▀▀    ▀▀\n\nbuild      : b12483-08a9b3589\nmodel      : runtime/modelos/qwen25.gguf\nftype      : Q4_K - Medium\nmodalities : text\n\navailable commands:\n  /exit or Ctrl+C     stop or exit\n  /regen              regenerate the last response\n  /clear              clear the chat history\n  /read <file>        add a text file\n  /glob <pattern>     add text files using globbing pattern\n\n\n\n> <|im_start|>system\nEres crítico independiente de SAM. Busca errores, supuestos falsos y contraejemplos. No te conformes con opiniones; da objeciones concretas. Sé breve.\n/no_think\n\n<|im_start|>user\nProblema:\nUsando masas atómicas aproximadas H=1, C=12, N=14, O=16 g/mol: ¿qué masa en gramos representan 1 moles de CH4? Solo el número.\nPropuesta del creador:\nLoading model... |\b-\b\\\b|\b/\b-\b\\\b \b\n\n▄▄ ▄▄\n██ ██\n██ ██  ▀▀█▄ ███▄███▄  ▀▀█ ... (truncated)\n1 mol de CH4 tiene masa 14 g.",
+        "propuesta_revisada": "Loading model... |\b-\b\\\b|\b/\b-\b\\\b \b\n\n▄▄ ▄▄\n██ ██\n██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄\n██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██\n██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀\n                                    ██    ██\n                                    ▀▀    ▀▀\n\nbuild      : b12483-08a9b3589\nmodel      : runtime/modelos/qwen3.gguf\nftype      : Q4_0\nmodalities : text\n\navailable commands:\n  /exit or Ctrl+C     stop or exit\n  /regen              regenerate the last response\n  /clear              clear the chat history\n  /read <file>        add a text file\n  /glob <pattern>     add text files using globbing pattern\n\n\n\n> <|im_start|>system\nEres SAM, un investigador en español. No inventes certezas. Razona entre dominios cuando aporte utilidad, señala supuestos. Termina con una línea 'RESPUESTA: ' seguida de tu respuesta concreta; nunca escribas la palabra 'valor' como marcador. La respuesta final debe ser breve y comprobable.\n/no_think\n\n<|im_start|>user\nProblema:\nUsando masas atómicas aproximadas H=1, C=12, N=14, O=16 g/mol: ¿qué masa en gramos representan 1 moles de CH4? Solo el número.\nTu prim ... (truncated)\nRESPUESTA: 14.",
+        "respuesta_inicial": null,
+        "respuesta_final": "14.",
+        "evaluacion_inicial": {
+          "verificada": false,
+          "motivo": "sin respuesta estructurada o sin referencia"
+        },
+        "evaluacion_final": {
+          "verificada": false,
+          "motivo": "diferente de referencia; sin aprobación"
+        },
+        "mejora_verificada": false,
+        "nota": "La comparación literal es limitada; no demuestra comprensión general ni entrenamiento neuronal."
+      }
+    },
+    {
+      "task_id": "bio-002",
+      "domain": "biologia",
+      "skill": "genetica",
+      "grade": "exact",
+      "correct": false,
+      "result": {
+        "creador": "Qwen2.5-0.5B-Instruct",
+        "critico": "Qwen3-0.6B",
+        "pregunta": "¿El ADN utiliza uracilo como base normal en lugar de timina?",
+        "primera_propuesta": "RESPUESTA: El ADN utiliza uracilo como base normal en lugar de timina.",
+        "critica": "[Start thinking]\n\nOkay, the user is asking if DNA uses uracil as the normal base instead of thymine. The creator's answer is \"El ADN utiliza uracilo como base normal en lugar de timina.\" But I need to check if that's correct.\n\nWait, DNA is synthesized using thymine, right? Because DNA is made of deoxyribonucleic acid, which is deoxy. So uracil isn't part of DNA. The creator is mixing up the bases. So the answer is wrong. The correct answer should be that DNA uses thym",
+        "propuesta_revisada": "Loading model... |\b-\b\\\b|\b/\b \b\n\n▄▄ ▄▄\n██ ██\n██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄\n██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██\n██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀\n                                    ██    ██\n                                    ▀▀    ▀▀\n\nbuild      : b12483-08a9b3589\nmodel      : runtime/modelos/qwen25.gguf\nftype      : Q4_K - Medium\nmodalities : text\n\navailable commands:\n  /exit or Ctrl+C     stop or exit\n  /regen              regenerate the last response\n  /clear              clear the chat history\n  /read <file>        add a text file\n  /glob <pattern>     add text files using globbing pattern\n\n\n\n> <|im_start|>system\nEres SAM, un investigador en español. No inventes certezas. Razona entre dominios cuando aporte utilidad, señala supuestos. Termina con una línea 'RESPUESTA: ' seguida de tu respuesta concreta; nunca escribas la palabra 'valor' como marcador. La respuesta final debe ser breve y comprobable.\n/no_think\n\n<|im_start|>user\nProblema:\n¿El ADN utiliza uracilo como base normal en lugar de timina?\nTu primera propuesta:\nRESPUESTA: El ADN utiliza uracilo como base normal en  ... (truncated)\nRESPUESTA: El ADN utiliza thymine como base normal en lugar de uracil.",
+        "respuesta_inicial": "El ADN utiliza uracilo como base normal en lugar de timina.",
+        "respuesta_final": "El ADN utiliza thymine como base normal en lugar de uracil.",
+        "evaluacion_inicial": {
+          "verificada": false,
+          "motivo": "diferente de referencia; sin aprobación"
+        },
+        "evaluacion_final": {
+          "verificada": false,
+          "motivo": "diferente de referencia; sin aprobación"
+        },
+        "mejora_verificada": false,
+        "nota": "La comparación literal es limitada; no demuestra comprensión general ni entrenamiento neuronal."
+      }
+    },
+    {
+      "task_id": "es-002",
+      "domain": "espanol",
+      "skill": "variedades",
+      "grade": "exact",
+      "correct": false,
+      "result": {
+        "creador": "Qwen3-0.6B",
+        "critico": "Qwen2.5-0.5B-Instruct",
+        "pregunta": "En una conversación en México, «ahorita» ¿equivale siempre a exactamente este instante?",
+        "primera_propuesta": "Ahora, el término \"ahorita\" en México no siempre equivale exactamente a un instante. Es un término que puede variar según la cultura y contexto. En muchos contextos, especialmente en contextos de presión o emociones, \"ahorita\" puede reflejar una situación pasada o presente. En cambio, en contextos más relajados o normales, puede no referirse al instante en síntoma. \n\nRESPUESTA: No, \"ahorita\" no siempre equivale exactamente a un instante",
+        "critica": "Loading model... |\b-\b\\\b|\b/\b \b\n\n▄▄ ▄▄\n██ ██\n██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄\n██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██\n██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀\n                                    ██    ██\n                                    ▀▀    ▀▀\n\nbuild      : b12483-08a9b3589\nmodel      : runtime/modelos/qwen25.gguf\nftype      : Q4_K - Medium\nmodalities : text\n\navailable commands:\n  /exit or Ctrl+C     stop or exit\n  /regen              regenerate the last response\n  /clear              clear the chat history\n  /read <file>        add a text file\n  /glob <pattern>     add text files using globbing pattern\n\n\n\n> <|im_start|>system\nEres crítico independiente de SAM. Busca errores, supuestos falsos y contraejemplos. No te conformes con opiniones; da objeciones concretas. Sé breve.\n/no_think\n\n<|im_start|>user\nProblema:\nEn una conversación en México, «ahorita» ¿equivale siempre a exactamente este instante?\nPropuesta del creador:\nAhora, el término \"ahorita\" en México no siempre equivale exactamente a un instante. Es un término que puede variar según la cultura y contexto. En muchos conte ... (truncated)\nEntiendo. ¿Hay algo más que pueda ayudarte?",
+        "propuesta_revisada": "Loading model... |\b-\b\\\b|\b/\b-\b\\\b \b\n\n▄▄ ▄▄\n██ ██\n██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄\n██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██\n██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀\n                                    ██    ██\n                                    ▀▀    ▀▀\n\nbuild      : b12483-08a9b3589\nmodel      : runtime/modelos/qwen3.gguf\nftype      : Q4_0\nmodalities : text\n\navailable commands:\n  /exit or Ctrl+C     stop or exit\n  /regen              regenerate the last response\n  /clear              clear the chat history\n  /read <file>        add a text file\n  /glob <pattern>     add text files using globbing pattern\n\n\n\n> <|im_start|>system\nEres SAM, un investigador en español. No inventes certezas. Razona entre dominios cuando aporte utilidad, señala supuestos. Termina con una línea 'RESPUESTA: ' seguida de tu respuesta concreta; nunca escribas la palabra 'valor' como marcador. La respuesta final debe ser breve y comprobable.\n/no_think\n\n<|im_start|>user\nProblema:\nEn una conversación en México, «ahorita» ¿equivale siempre a exactamente este instante?\nTu primera propuesta:\nAhora, el término \"aho ... (truncated)\nRESPUESTA: No, \"ahorita\" no siempre equivale exactamente a un instante.",
+        "respuesta_inicial": "No, \"ahorita\" no siempre equivale exactamente a un instante",
+        "respuesta_final": "No, \"ahorita\" no siempre equivale exactamente a un instante.",
+        "evaluacion_inicial": {
+          "verificada": false,
+          "motivo": "diferente de referencia; sin aprobación"
+        },
+        "evaluacion_final": {
+          "verificada": false,
+          "motivo": "diferente de referencia; sin aprobación"
+        },
+        "mejora_verificada": false,
+        "nota": "La comparación literal es limitada; no demuestra comprensión general ni entrenamiento neuronal."
+      }
+    },
+    {
+      "task_id": "fis-002",
+      "domain": "fisica",
+      "skill": "unidades",
+      "grade": "exact",
+      "correct": false,
+      "result": {
+        "creador": "Qwen2.5-0.5B-Instruct",
+        "critico": "Qwen3-0.6B",
+        "pregunta": "¿Qué unidad SI se utiliza para energía?",
+        "primera_propuesta": "RESPUESTA: kWh (Kilowatt-hours)",
+        "critica": "El problema es correcto, pero la respuesta debería ser **kWh** (Kilowatt-hr).",
+        "propuesta_revisada": "Loading model... |\b-\b\\\b|\b/\b \b\n\n▄▄ ▄▄\n██ ██\n██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄\n██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██\n██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀\n                                    ██    ██\n                                    ▀▀    ▀▀\n\nbuild      : b12483-08a9b3589\nmodel      : runtime/modelos/qwen25.gguf\nftype      : Q4_K - Medium\nmodalities : text\n\navailable commands:\n  /exit or Ctrl+C     stop or exit\n  /regen              regenerate the last response\n  /clear              clear the chat history\n  /read <file>        add a text file\n  /glob <pattern>     add text files using globbing pattern\n\n\n\n> <|im_start|>system\nEres SAM, un investigador en español. No inventes certezas. Razona entre dominios cuando aporte utilidad, señala supuestos. Termina con una línea 'RESPUESTA: ' seguida de tu respuesta concreta; nunca escribas la palabra 'valor' como marcador. La respuesta final debe ser breve y comprobable.\n/no_think\n\n<|im_start|>user\nProblema:\n¿Qué unidad SI se utiliza para energía?\nTu primera propuesta:\nRESPUESTA: kWh (Kilowatt-hours)\nRevisión crítica independiente:\nEl prob ... (truncated)\nRESPUESTA: kWh (Kilowatt-hours)",
+        "respuesta_inicial": "kWh (Kilowatt-hours)",
+        "respuesta_final": "kWh (Kilowatt-hours)",
+        "evaluacion_inicial": {
+          "verificada": false,
+          "motivo": "diferente de referencia; sin aprobación"
+        },
+        "evaluacion_final": {
+          "verificada": false,
+          "motivo": "diferente de referencia; sin aprobación"
+        },
+        "mejora_verificada": false,
+        "nota": "La comparación literal es limitada; no demuestra comprensión general ni entrenamiento neuronal."
+      }
+    },
+    {
+      "task_id": "conexion-002",
+      "domain": "interdominios",
+      "skill": "analogia_estructural",
+      "grade": "revision_humana",
+      "correct": false,
+      "result": {
+        "creador": "Qwen3-0.6B",
+        "critico": "Qwen2.5-0.5B-Instruct",
+        "pregunta": "¿Qué principio del sistema inmune puede inspirar detección defensiva de anomalías en un software?\nAnaliza el mecanismo, sus límites y cómo comprobarlo.",
+        "primera_propuesta": "Loading model... |\b-\b\\\b|\b/\b-\b\\\b \b\n\n▄▄ ▄▄\n██ ██\n██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄\n██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██\n██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀\n                                    ██    ██\n                                    ▀▀    ▀▀\n\nbuild      : b12483-08a9b3589\nmodel      : runtime/modelos/qwen3.gguf\nftype      : Q4_0\nmodalities : text\n\navailable commands:\n  /exit or Ctrl+C     stop or exit\n  /regen              regenerate the last response\n  /clear              clear the chat history\n  /read <file>        add a text file\n  /glob <pattern>     add text files using globbing pattern\n\n\n\n> <|im_start|>system\nEres SAM, un investigador en español. No inventes certezas. Razona entre dominios cuando aporte utilidad, señala supuestos. Termina con una línea 'RESPUESTA: ' seguida de tu respuesta concreta; nunca escribas la palabra 'valor' como marcador. La respuesta final debe ser breve y comprobable.\n/no_think\n\n<|im_start|>user\n¿Qué principio del sistema inmune puede inspirar detección defensiva de anomalías en un software?\nAnaliza el mecanismo, sus límites y cómo com ... (truncated)\nEl principio del sistema inmune que puede inspirar la detección defensiva en un software es el principio de **inmunidad**. Este principio, relacionado con la capacidad del sistema para detectar y responder a amenazas, puede aplicarse al diseño de sistemas que identifiquen y respondan a anomalías.  \n\n**Mecanismo:** El principio de inmunidad se refiere de la capacidad del sistema para detectar y responder a amenazas. En software, esto podría implicar que el sistema tenga un mecanismo",
+        "critica": "Loading model... |\b-\b\\\b|\b/\b \b\n\n▄▄ ▄▄\n██ ██\n██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄\n██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██\n██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀\n                                    ██    ██\n                                    ▀▀    ▀▀\n\nbuild      : b12483-08a9b3589\nmodel      : runtime/modelos/qwen25.gguf\nftype      : Q4_K - Medium\nmodalities : text\n\navailable commands:\n  /exit or Ctrl+C     stop or exit\n  /regen              regenerate the last response\n  /clear              clear the chat history\n  /read <file>        add a text file\n  /glob <pattern>     add text files using globbing pattern\n\n\n\n> <|im_start|>system\nEres crítico independiente de SAM. Busca errores, supuestos falsos y contraejemplos. No te conformes con opiniones; da objeciones concretas. Sé breve.\n/no_think\n\n<|im_start|>user\nProblema:\n¿Qué principio del sistema inmune puede inspirar detección defensiva de anomalías en un software?\nAnaliza el mecanismo, sus límites y cómo comprobarlo.\nPropuesta del creador:\nLoading model... |\b-\b\\\b|\b/\b-\b\\\b \b\n\n▄▄ ▄▄\n██ ██\n██ ██  ▀▀█▄ ██� ... (truncated)\nEl principio del sistema inmune que puede inspirar la detección defensiva en un software es el principio de **inmunidad**. Este principio, relacionado con la capacidad del sistema para detectar y responder a amenazas, puede aplicarse al diseño de sistemas que identifiquen y respondan a anomalías.",
+        "propuesta_revisada": "Loading model... |\b-\b\\\b|\b/\b-\b\\\b \b\n\n▄▄ ▄▄\n██ ██\n██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄\n██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██\n██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀\n                                    ██    ██\n                                    ▀▀    ▀▀\n\nbuild      : b12483-08a9b3589\nmodel      : runtime/modelos/qwen3.gguf\nftype      : Q4_0\nmodalities : text\n\navailable commands:\n  /exit or Ctrl+C     stop or exit\n  /regen              regenerate the last response\n  /clear              clear the chat history\n  /read <file>        add a text file\n  /glob <pattern>     add text files using globbing pattern\n\n\n\n> <|im_start|>system\nEres SAM, un investigador en español. No inventes certezas. Razona entre dominios cuando aporte utilidad, señala supuestos. Termina con una línea 'RESPUESTA: ' seguida de tu respuesta concreta; nunca escribas la palabra 'valor' como marcador. La respuesta final debe ser breve y comprobable.\n/no_think\n\n<|im_start|>user\nProblema:\n¿Qué principio del sistema inmune puede inspirar detección defensiva de anomalías en un software?\nAnaliza el mecanismo, sus límites y ... (truncated)\nRESPUESTA: El principio del sistema inmune que puede inspirar la detección defensiva de anomalías en un software es el **principio de inmunidad**. Este principio, relacionado con la capacidad del sistema para detectar y responder a amenazas, puede aplicarse al diseño de sistemas que identifiquen y respondan a anomalías.",
+        "respuesta_inicial": null,
+        "respuesta_final": "El principio del sistema inmune que puede inspirar la detección defensiva de anomalías en un software es el **principio de inmunidad**. Este principio, relacionado con la capacidad del sistema para detectar y responder a amenazas, puede aplicarse al diseño de sistemas que identifiquen y respondan a anomalías.",
+        "evaluacion_inicial": {
+          "verificada": false,
+          "motivo": "sin respuesta estructurada o sin referencia"
+        },
+        "evaluacion_final": {
+          "verificada": false,
+          "motivo": "sin respuesta estructurada o sin referencia"
+        },
+        "mejora_verificada": false,
+        "nota": "La comparación literal es limitada; no demuestra comprensión general ni entrenamiento neuronal."
+      }
+    },
+    {
+      "task_id": "gen-alg-10-11",
+      "domain": "matematicas",
+      "skill": "algebra",
+      "grade": "exact",
+      "correct": true,
+      "result": {
+        "creador": "Qwen2.5-0.5B-Instruct",
+        "critico": "Qwen3-0.6B",
+        "pregunta": "Resuelve la ecuación 10x + 21 = 131. Da únicamente x.",
+        "primera_propuesta": "10x + 21 = 131\n10x = 131 - 21\n10x = 110\nx = 110 / 10\nx = 11",
+        "critica": "El error es que no se usa la operación de división correctamente. La propuesta correcta es:\n\n10x + 21 = 131  \n10x = 131 - 21  \n10x = 110  \nx = 11\n\nLa solución correcta es x = 11.",
+        "propuesta_revisada": "Loading model... |\b-\b\\\b|\b/\b \b\n\n▄▄ ▄▄\n██ ██\n██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄\n██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██\n██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀\n                                    ██    ██\n                                    ▀▀    ▀▀\n\nbuild      : b12483-08a9b3589\nmodel      : runtime/modelos/qwen25.gguf\nftype      : Q4_K - Medium\nmodalities : text\n\navailable commands:\n  /exit or Ctrl+C     stop or exit\n  /regen              regenerate the last response\n  /clear              clear the chat history\n  /read <file>        add a text file\n  /glob <pattern>     add text files using globbing pattern\n\n\n\n> <|im_start|>system\nEres SAM, un investigador en español. No inventes certezas. Razona entre dominios cuando aporte utilidad, señala supuestos. Termina con una línea 'RESPUESTA: ' seguida de tu respuesta concreta; nunca escribas la palabra 'valor' como marcador. La respuesta final debe ser breve y comprobable.\n/no_think\n\n<|im_start|>user\nProblema:\nResuelve la ecuación 10x + 21 = 131. Da únicamente x.\nTu primera propuesta:\n10x + 21 = 131\n10x = 131 - 21\n10x = 110\nx = 110 / 10\nx = 11\n ... (truncated)\nRESPUESTA: 11",
+        "respuesta_inicial": null,
+        "respuesta_final": "11",
+        "evaluacion_inicial": {
+          "verificada": false,
+          "motivo": "sin respuesta estructurada o sin referencia"
+        },
+        "evaluacion_final": {
+          "verificada": true,
+          "motivo": "coincidencia exacta normalizada"
+        },
+        "mejora_verificada": true,
+        "nota": "La comparación literal es limitada; no demuestra comprensión general ni entrenamiento neuronal."
+      }
+    }
+  ],
+  "capsulas_candidatas": [
+    {
+      "schema": "sam.capsula.v0",
+      "id": "gen-alg-10-11",
+      "estado": "CANDIDATE_PENDING_TCSA",
+      "tcsa_project": "SAM-CORE",
+      "objetivo": "Resuelve la ecuación 10x + 21 = 131. Da únicamente x.",
+      "respuesta": "11",
+      "referencia": "11",
+      "fuente": "generador:algebra",
+      "verificacion": "coincidencia exacta normalizada",
+      "confianza": "solo comprobación literal estrecha",
+      "restricciones": "No entrenar, publicar como verdad universal ni promover sin evaluación TCSA",
+      "version_requerida": "revisión canónica TCSA3000"
+    }
+  ],
+  "errores": [],
+  "resumen": {
+    "evaluadas": 12,
+    "correctas_literalmente": 1,
+    "no_verificadas": 2,
+    "errores": 0,
+    "capsulas_candidatas": 1,
+    "cobertura": {
+      "biologia": 2,
+      "espanol": 2,
+      "fisica": 2,
+      "interdominios": 2,
+      "matematicas": 2,
+      "psicologia": 1,
+      "quimica": 1
+    }
+  },
+  "aviso": "Experiencias y cápsulas pendientes de TCSA; no entrenan pesos ni certifican comprensión."
+}
