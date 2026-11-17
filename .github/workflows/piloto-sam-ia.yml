@@ -85,8 +85,6 @@ jobs:
             --batch 12 --max-cycles 1 --interval 0 --min-free-gb 1.0
       - name: Archivo durable en rama sam-candidates, no en main ni en TCSA
         shell: bash
-        env:
-          GH_TOKEN: ${{{ github.token }}
         run: |
           set -euo pipefail
           test -s .sam-state/eventos.jsonl
