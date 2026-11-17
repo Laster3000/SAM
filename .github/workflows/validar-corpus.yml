@@ -19,4 +19,6 @@ jobs:
         with:
           persist-credentials: false
       - name: Verificar casos con Python estándar
-        run: python3 evaluacion/validar_corpus.py
+        run: |
+          python3 evaluacion/validar_corpus.py
+          python3 evaluacion/validar_desafios.py
