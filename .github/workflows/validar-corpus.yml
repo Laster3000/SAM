@@ -1,0 +1,22 @@
+name: SAM - validar corpus gratuito
+on:
+  push:
+    paths:
+      - "evaluacion/**"
+      - ".github/workflows/validar-corpus.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: sam-validar-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Verificar casos con Python estándar
+        run: python3 evaluacion/validar_corpus.py
