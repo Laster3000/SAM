@@ -15,6 +15,8 @@ from .core import Modelo, LlamaCLI, PENDING, digest_file
 from .learning import Memoria, ejecutar_sesion
 from .research import investigar_lote
 from .quality import separar
+from .diversity import seleccionar_diverso, cobertura
+from .strategy_eval import comparar_estrategias
 
 def ejecutar(argv=None):
     p=argparse.ArgumentParser(prog="python -m sam.worker",description="Worker SAM de evolución repetida")
@@ -32,9 +34,12 @@ def ejecutar(argv=None):
     p.add_argument("--max-state-mb",type=int,default=256)
     p.add_argument("--research-topics",type=int,default=0,help="Hasta 3 temas públicos por ciclo; sin certificación automática")
     p.add_argument("--holdout-cases",type=int,default=2,help="Casos ciegos por ciclo; nunca usan memoria")
+    p.add_argument("--diverse",action="store_true",help="Rotar dominios y habilidades")
+    p.add_argument("--strategy-cases",type=int,default=0,
+                   help="Comparar razonamiento directo y divergente sobre hasta 4 casos reservados")
     p.add_argument("--dry-run",action="store_true")
     a=p.parse_args(argv)
-    if a.batch<1 or a.batch>100 or a.interval<0 or a.min_free_gb<0.1 or a.max_state_mb<16 or not 0<=a.research_topics<=3 or not 0<=a.holdout_cases<=4:
+    if a.batch<1 or a.batch>100 or a.interval<0 or a.min_free_gb<0.1 or a.max_state_mb<16 or not 0<=a.research_topics<=3 or not 0<=a.holdout_cases<=4 or not 0<=a.strategy_cases<=4:
         p.error("Parámetros fuera de límites")
     tareas=cargar(a.eval_dir)
     practica,reservadas=separar(tareas)
@@ -77,12 +82,26 @@ def ejecutar(argv=None):
                 print("SAM_PAUSA_PROTECCION_DISCO",round(free,2),round(tam,2),file=sys.stderr)
                 return 3
             try:
-                resultado=ejecutar_sesion(mem,practica,modelos,backend,a.batch)
+                resultado=ejecutar_sesion(mem,practica,modelos,backend,a.batch,
+                                           diverse=a.diverse)
+                if a.diverse:
+                    resultado["cobertura_diversa"]=cobertura([
+                        t for t in practica if t.id in set(resultado["task_ids"])])
                 if a.holdout_cases:
                     resultado["holdout"]=ejecutar_sesion(
                         mem,reservadas,modelos,backend,a.holdout_cases,holdout=True)
                     print("SAM_HOLDOUT",resultado["holdout"]["resumen"],
                           "sin memoria, sin entrenamiento",flush=True)
+                if a.strategy_cases:
+                    reservadas_exactas=[t for t in reservadas if t.grade=="exact"]
+                    ronda=int(mem.con.execute("SELECT COUNT(DISTINCT run_id) FROM intentos").fetchone()[0])
+                    candidatos=seleccionar_diverso(
+                        reservadas_exactas,mem.estadisticas(),a.strategy_cases,ronda)
+                    if candidatos:
+                        resultado["evaluacion_estrategias"]=comparar_estrategias(
+                            backend,modelos,candidatos,max_cases=a.strategy_cases)
+                        print("SAM_ESTRATEGIAS",resultado["evaluacion_estrategias"]["resumen"],
+                              "sin memoria; candidato no canónico",flush=True)
                 if a.research_topics:
                     resultado["investigacion_externa"]=investigar_lote(
                         mem,backend,modelos,a.research_topics)

@@ -81,7 +81,7 @@ jobs:
           echo "da2572f16c06133561ce56accaa822216f2391ef4d37fba427801cd6736417d4  runtime/modelos/qwen3.gguf" | sha256sum -c -
           echo "74a4da8c9fdbcd15bd1f6d01d621410d31c6fc00986f5eb687824e7b93d7a9db  runtime/modelos/qwen25.gguf" | sha256sum -c -
           "$CLI" --version
-      - name: SAM evoluciona - lote de 12 experimentos rotativos
+      - name: SAM - experimentos variados y comparacion de estrategias
         env:
           OMP_NUM_THREADS: "2"
         run: |
@@ -90,7 +90,7 @@ jobs:
             --model-b runtime/modelos/qwen25.gguf \
             --llama-cli "$LLAMA_BIN" \
             --state .sam-state --reports resultados \
-            --batch 12 --holdout-cases 2 --research-topics 2 --max-cycles 2 --interval 0 --min-free-gb 1.0
+            --batch 14 --holdout-cases 2 --research-topics 3 --diverse --strategy-cases 2 --max-cycles 2 --interval 0 --min-free-gb 1.0
           python3 -m sam.quality .sam-state/eventos.jsonl --manifest .sam-state/ledger-manifest.json
       - name: Archivo durable en rama sam-candidates, no en main ni en TCSA
         shell: bash

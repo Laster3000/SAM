@@ -14,6 +14,7 @@ from uuid import uuid4
 from .core import Modelo, LlamaCLI, PENDING, ciclo_dos_modelos, capsula_candidata
 from .curriculum import Tarea
 from .quality import ejemplos_verificados, contexto_ejemplos
+from .diversity import seleccionar_diverso
 
 def canonical_json(x: dict) -> str:
     return json.dumps(x, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
@@ -134,10 +135,11 @@ class Memoria:
 
 def ejecutar_sesion(memory: Memoria, tasks: list[Tarea], models: tuple[Modelo,Modelo],
                    backend: LlamaCLI, limit: int = 12, max_failures: int = 3,
-                   *, holdout: bool = False) -> dict:
+                   *, holdout: bool = False, diverse: bool = False) -> dict:
     run_id="sam-"+datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S")+"-"+uuid4().hex[:10]
     total=int(memory.con.execute("SELECT COUNT(DISTINCT run_id) FROM intentos").fetchone()[0])
-    elegidas=memory.elegir(tasks,limit,total)
+    elegidas=(seleccionar_diverso(tasks,memory.estadisticas(),limit,total)
+              if diverse else memory.elegir(tasks,limit,total))
     reporte={"schema":"sam.learning_session.v1","run_id":run_id,
              "utc":datetime.now(timezone.utc).isoformat(),"mode":"EVOLUCION",
              "canonical_state":PENDING,"modelos":[x.nombre for x in models],

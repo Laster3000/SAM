@@ -40,3 +40,7 @@ SAM se está construyendo como una IA modular con dos modos: **TRABAJO** y **EVO
 - [ ] Mantener el PC apagado durante un ciclo remoto exitoso para demostrar independencia.
 
 Este repositorio representa un **laboratorio de construcción**, no resultados E2E ya acreditados.
+
+
+## R007 — Variedad y aprendizaje verificable (rama experimental)
+La rama `sam-r007-ingesta-evaluacion` incorpora un selector de dominios/habilidades variados, un comparador de razonamiento directo frente a divergente sobre ejercicios reservados y una bandeja de información con consentimiento. Véase [documentación R007](diseno/SAM-R007-EXPERIMENTOS-VARIADOS.md). El repositorio continúa público, pero el contenido de conversaciones se guarda localmente. GitHub Actions opera en tandas con límites; no puede convertirse en un servidor permanente ilimitado.
