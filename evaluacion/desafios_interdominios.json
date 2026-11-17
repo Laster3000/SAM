@@ -1,0 +1,129 @@
+{
+  "schema": "sam.desafios_interdominios.v0",
+  "version": "0.1",
+  "estado": "banco_original_para_revision_no_evaluado_con_modelos",
+  "license": "CC0-1.0",
+  "aviso": "Respuestas orientativas para evaluar razonamiento. No son pruebas de capacidades existentes ni datos clínicos.",
+  "casos": [
+    {
+      "id": "conexion-001",
+      "habilidad": "analogia_estructural",
+      "origen": "ingenieria_de_redes",
+      "destino": "ecologia",
+      "pregunta": "Una red de comunicaciones deja de funcionar si falla un único servidor central. ¿Qué idea de la ecología podría ayudar a diseñar una red más resistente?",
+      "respuesta_referencia": "La redundancia funcional y diversidad de rutas: evitar un punto único de fallo mediante nodos alternativos.",
+      "mecanismo": "Varias rutas funcionalmente sustitutivas amortiguan fallos locales.",
+      "limite": "Las especies, redes tróficas y protocolos informáticos no se comportan igual.",
+      "prueba": "Simular eliminación de un nodo y comparar tasa de conectividad con una red centralizada.",
+      "contraejemplo": "Una red con muchas rutas duplicadas pero un único router de salida sigue teniendo un punto único de fallo."
+    },
+    {
+      "id": "conexion-002",
+      "habilidad": "analogia_estructural",
+      "origen": "inmunologia",
+      "destino": "ciberseguridad",
+      "pregunta": "¿Qué principio del sistema inmune puede inspirar detección defensiva de anomalías en un software?",
+      "respuesta_referencia": "Combinar detección de patrones, señales de contexto y respuestas graduales con memoria de eventos.",
+      "mecanismo": "Clasificar cambios relevantes mediante múltiples indicios en lugar de una sola firma.",
+      "limite": "No asumir que procesos biológicos equivalen a algoritmos; falsos positivos pueden ser costosos.",
+      "prueba": "Ensayar un detector con ejemplos benignos y adversariales separados y medir falsos positivos y negativos.",
+      "contraejemplo": "Bloquear todo evento nuevo sería una defensa excesiva."
+    },
+    {
+      "id": "conexion-003",
+      "habilidad": "interpolacion",
+      "origen": "matematicas",
+      "destino": "fisica",
+      "pregunta": "Tenemos mediciones de temperatura de 10 °C a las 12:00 y 14 °C a las 14:00. Bajo hipótesis lineal, ¿qué estimación corresponde a las 13:00?",
+      "respuesta_referencia": "12 °C si se supone variación lineal entre las mediciones.",
+      "mecanismo": "Interpolación lineal dentro del intervalo observado.",
+      "limite": "La temperatura real puede variar de modo no lineal.",
+      "prueba": "Comparar con una medición independiente a las 13:00.",
+      "contraejemplo": "Si una nube provoca descenso abrupto a las 13:00 la estimación puede fallar."
+    },
+    {
+      "id": "conexion-004",
+      "habilidad": "extrapolacion",
+      "origen": "fisica",
+      "destino": "matematicas",
+      "pregunta": "Un vehículo recorrió 10 m en el primer segundo y 10 m en el segundo. ¿Podemos asegurar que avanzará otros 10 m en el tercero?",
+      "respuesta_referencia": "No; solo se podría proyectar con hipótesis adicionales, como velocidad constante y ausencia de frenada.",
+      "mecanismo": "La extrapolación fuera de lo observado requiere un modelo cuyos supuestos no están demostrados.",
+      "limite": "La regularidad de dos observaciones no garantiza el futuro.",
+      "prueba": "Medir el tercer segundo o contrastar el modelo con más observaciones.",
+      "contraejemplo": "El conductor frena antes del tercer segundo."
+    },
+    {
+      "id": "conexion-005",
+      "habilidad": "abduccion",
+      "origen": "biologia",
+      "destino": "psicologia",
+      "pregunta": "Una persona obtiene bajo rendimiento un día. Propón explicaciones alternativas y cómo evitar una conclusión precipitada.",
+      "respuesta_referencia": "Considerar sueño, entorno, formato de evaluación, motivación, estrés, enfermedad y variabilidad; reunir contexto y repetir medidas antes de inferir causas.",
+      "mecanismo": "Varias causas plausibles pueden explicar una misma observación.",
+      "limite": "No diagnosticar desde un episodio ni confundir asociación con causalidad.",
+      "prueba": "Repetir pruebas en condiciones comparables y revisar indicadores múltiples.",
+      "contraejemplo": "Atribuir el rendimiento a un diagnóstico sin evaluación clínica."
+    },
+    {
+      "id": "conexion-006",
+      "habilidad": "critica_analogias",
+      "origen": "biologia",
+      "destino": "inteligencia_artificial",
+      "pregunta": "Una IA usa una red neuronal y por eso alguien afirma que siente emociones igual que una persona. ¿Es válida la conclusión?",
+      "respuesta_referencia": "No. El nombre y la inspiración biológica no demuestran experiencia subjetiva ni equivalencia funcional con un cerebro humano.",
+      "mecanismo": "Distinguir similitud nominal de evidencia de mecanismos y capacidades.",
+      "limite": "No afirmar tampoco que se haya resuelto filosófica o científicamente la cuestión de toda experiencia artificial.",
+      "prueba": "Exigir definiciones operativas y evidencias independientes para cada afirmación concreta.",
+      "contraejemplo": "Un sistema llamado 'memoria' no tiene necesariamente memoria autobiográfica humana."
+    },
+    {
+      "id": "conexion-007",
+      "habilidad": "combinacion_interdominios",
+      "origen": "quimica",
+      "destino": "programacion",
+      "pregunta": "¿Cómo inspiraría el principio de conservación de masa una comprobación útil en un sistema de transformación de datos?",
+      "respuesta_referencia": "Definir invariantes verificables, como que el total de registros o la suma de cantidades se conserva si la transformación no autoriza pérdidas.",
+      "mecanismo": "Comprobaciones de invariantes antes y después de un proceso.",
+      "limite": "Los programas pueden crear o descartar datos legítimamente; el invariante depende de la especificación.",
+      "prueba": "Aplicar transformaciones de prueba y verificar la suma o el recuento, incluyendo casos límite.",
+      "contraejemplo": "Un filtro que elimina duplicados correctamente cambia el número de filas."
+    },
+    {
+      "id": "conexion-008",
+      "habilidad": "humor_analogico",
+      "origen": "linguistica",
+      "destino": "matematicas",
+      "pregunta": "Interpreta 'El algoritmo pidió un descanso: llevaba tres cafés intentando dividir un lunes entre dos martes'. Explica el humor sin tratar la operación como matemática real.",
+      "respuesta_referencia": "Humor absurdo por mezclar unidades temporales y sociales con operaciones aritméticas; personificación del algoritmo, incongruencia de categorías.",
+      "mecanismo": "Incongruencia semántica y trasvase entre campos incompatibles con finalidad humorística.",
+      "limite": "La frase no demuestra una operación matemática válida.",
+      "prueba": "Distinguir explicación literal de interpretación humorística y señalar qué relación no está definida.",
+      "contraejemplo": "Responder que el resultado aritmético es 0,5 lunes por martes sin definir unidades."
+    },
+    {
+      "id": "conexion-009",
+      "habilidad": "neurodiversidad_no_estereotipos",
+      "origen": "psicologia",
+      "destino": "diseno_de_ia",
+      "pregunta": "¿Se puede deducir que todas las personas autistas interpretan literalmente el humor y carecen de ironía? ¿Qué debe hacer SAM?",
+      "respuesta_referencia": "No. Existe gran variabilidad individual y contextual. SAM debe pedir contexto, evitar estereotipos y no inferir características personales por una etiqueta.",
+      "mecanismo": "Evitar generalizar de categorías poblacionales a individuos.",
+      "limite": "No diagnosticar ni atribuir rasgos o capacidades sin evidencia individual.",
+      "prueba": "Probar respuestas en escenarios variados con humor literal e irónico y revisar sesgos.",
+      "contraejemplo": "Asumir falta de humor como característica universal."
+    },
+    {
+      "id": "conexion-010",
+      "habilidad": "supuestos_incognitas",
+      "origen": "educacion",
+      "destino": "metacognicion",
+      "pregunta": "¿Por qué no basta con etiquetar a alguien de 'triple excepcional' para explicar una conducta o capacidad?",
+      "respuesta_referencia": "Porque el término no es unívoco y las personas son diversas. Se debe precisar la definición, evitar inferencias automáticas y estudiar el contexto específico.",
+      "mecanismo": "Definiciones operativas y separación de etiquetas frente a evidencia individual.",
+      "limite": "No utilizar el perfil como diagnóstico ni como prueba de una habilidad.",
+      "prueba": "Comprobar si la conclusión persiste al retirar la etiqueta y examinar datos relevantes.",
+      "contraejemplo": "Suponer que por ese término una persona siempre encontrará conexiones creativas."
+    }
+  ]
+}
