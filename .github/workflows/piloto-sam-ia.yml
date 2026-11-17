@@ -90,7 +90,7 @@ jobs:
             --model-b runtime/modelos/qwen25.gguf \
             --llama-cli "$LLAMA_BIN" \
             --state .sam-state --reports resultados \
-            --batch 14 --holdout-cases 2 --research-topics 3 --diverse --strategy-cases 2 --max-cycles 2 --interval 0 --min-free-gb 1.0
+            --batch 14 --holdout-cases 2 --research-topics 3 --diverse --strategy-cases 2 --self-evolve-cases 2 --max-cycles 2 --interval 0 --min-free-gb 1.0
           python3 -m sam.quality .sam-state/eventos.jsonl --manifest .sam-state/ledger-manifest.json
       - name: Archivo durable en rama sam-candidates, no en main ni en TCSA
         shell: bash
@@ -100,7 +100,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git worktree add -B sam-candidates /tmp/sam-candidates origin/sam-candidates
-          mkdir -p /tmp/sam-candidates/state /tmp/sam-candidates/runs
+          mkdir -p /tmp/sam-candidates/state /tmp/sam-candidates/runs /tmp/sam-candidates/auto-propuestas
           cp .sam-state/eventos.jsonl /tmp/sam-nuevos-eventos.jsonl
           cp resultados/sam-*.json /tmp/
           cd /tmp/sam-candidates
@@ -110,8 +110,13 @@ jobs:
             test -f "$f" || continue
             cp "$f" runs/
           done
+          for f in "$GITHUB_WORKSPACE"/resultados/auto-propuestas/*.json "$GITHUB_WORKSPACE"/resultados/auto-propuestas/*.py; do
+            if test -f "$f"; then
+              cp "$f" auto-propuestas/
+            fi
+          done
           (cd "$GITHUB_WORKSPACE" && python3 -m sam.quality /tmp/sam-candidates/state/eventos.jsonl --manifest /tmp/sam-candidates/state/ledger-manifest.json)
-          git add state/eventos.jsonl state/ledger-manifest.json runs/
+          git add state/eventos.jsonl state/ledger-manifest.json runs/ auto-propuestas/
           git commit -m "SAM: experiencias candidatas GitHub run $GITHUB_RUN_ID"
           git push origin HEAD:refs/heads/sam-candidates
           echo "CANDIDATOS_PUBLICADOS_NO_CANONICOS: $GITHUB_RUN_ID"
@@ -124,11 +129,13 @@ jobs:
             resultados/*.json
             .sam-state/eventos.jsonl
             .sam-state/ledger-manifest.json
+            resultados/auto-propuestas/*.json
+            resultados/auto-propuestas/*.py
           if-no-files-found: warn
           retention-days: 90
 
       - name: Siguiente ejecución GitHub después de archivar (con cuota de CI)
-        if: ${{ success() }}
+        if: ${{ success() && github.ref == 'refs/heads/main' }}
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}

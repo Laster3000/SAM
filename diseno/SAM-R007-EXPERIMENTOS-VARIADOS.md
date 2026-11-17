@@ -37,3 +37,13 @@ python -m sam.worker --dry-run
 \`\`\`
 
 Esta rama es experimental. **No fusionar sin revisar CI y verificar que los cambios no rompen el flujo anterior**.
+
+
+## R008 — Propuestas automáticas de métodos de razonamiento
+El motor \`sam.self_evolve\` lee **errores recurrentes verificables** de la memoria de práctica (excluye holdout y revisión humana). Cuando detecta al menos dos fallos en tareas distintas de una misma habilidad, ofrece a los dos modelos las estadísticas: uno selecciona una estrategia entre \`descomponer\`, \`refutar\`, \`interdominios\` y \`unidades\`; el segundo emite una objeción crítica.
+
+El generador construye un **módulo Python candidato a partir de código fijo revisado**. No acepta bloques de código libre de un modelo, no ejecuta esos módulos ni cambia permisos, entrenamiento, GitHub main o el sistema estable. Las propuestas están destinadas a revisión.
+
+El evaluador mide dos métodos sobre los mismos ejercicios **de práctica, exactos, sin intentos anteriores en memoria**. Los resultados y el código candidato se publican en \`sam-candidates/auto-propuestas/\`; si el candidato supera al actual, se marca \`MEJORA_EXPLORATORIA_CANDIDATA\`, nunca \`APROBADO\`. El corpus de práctica es público, por tanto hace falta evaluación externa verdaderamente independiente antes de promocionar estrategias. \`--self-evolve-cases 2\` activa el experimento.
+
+Cada ciclo R008 conserva el límite de GitHub; se añade esta comparación sin desencadenar en CI experimental un workflow innecesario de main. Los errores y éxitos quedan registrados públicamente, sin secretos ni conversaciones privadas.

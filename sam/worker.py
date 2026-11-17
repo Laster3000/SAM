@@ -17,6 +17,7 @@ from .research import investigar_lote
 from .quality import separar
 from .diversity import seleccionar_diverso, cobertura
 from .strategy_eval import comparar_estrategias
+from .self_evolve import experimentar, guardar_candidato
 
 def ejecutar(argv=None):
     p=argparse.ArgumentParser(prog="python -m sam.worker",description="Worker SAM de evolución repetida")
@@ -37,9 +38,11 @@ def ejecutar(argv=None):
     p.add_argument("--diverse",action="store_true",help="Rotar dominios y habilidades")
     p.add_argument("--strategy-cases",type=int,default=0,
                    help="Comparar razonamiento directo y divergente sobre hasta 4 casos reservados")
+    p.add_argument("--self-evolve-cases",type=int,default=0,
+                   help="Analiza fallos recurrentes y ensaya hasta 4 problemas nuevos de práctica")
     p.add_argument("--dry-run",action="store_true")
     a=p.parse_args(argv)
-    if a.batch<1 or a.batch>100 or a.interval<0 or a.min_free_gb<0.1 or a.max_state_mb<16 or not 0<=a.research_topics<=3 or not 0<=a.holdout_cases<=4 or not 0<=a.strategy_cases<=4:
+    if a.batch<1 or a.batch>100 or a.interval<0 or a.min_free_gb<0.1 or a.max_state_mb<16 or not 0<=a.research_topics<=3 or not 0<=a.holdout_cases<=4 or not 0<=a.strategy_cases<=4 or not 0<=a.self_evolve_cases<=4:
         p.error("Parámetros fuera de límites")
     tareas=cargar(a.eval_dir)
     practica,reservadas=separar(tareas)
@@ -102,6 +105,17 @@ def ejecutar(argv=None):
                             backend,modelos,candidatos,max_cases=a.strategy_cases)
                         print("SAM_ESTRATEGIAS",resultado["evaluacion_estrategias"]["resumen"],
                               "sin memoria; candidato no canónico",flush=True)
+                if a.self_evolve_cases:
+                    auto=experimentar(mem,practica,modelos,backend,
+                                      max_cases=a.self_evolve_cases)
+                    paths=guardar_candidato(auto,reports/"auto-propuestas")
+                    resultado["automejora"]={
+                        "estado":auto["estado"],"resultado":auto["resultado"],
+                        "propuesta":auto.get("propuesta"),
+                        "resumen":auto.get("resumen"),"informes":paths,
+                    }
+                    print("SAM_AUTOEVOLUCION",auto["resultado"],
+                          auto.get("resumen",{}),"codigo_no_ejecutado",flush=True)
                 if a.research_topics:
                     resultado["investigacion_externa"]=investigar_lote(
                         mem,backend,modelos,a.research_topics)
