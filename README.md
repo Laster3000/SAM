@@ -2,7 +2,7 @@
 
 > Estado: prototipo experimental. **No es todavía una IA entrenada ni un sistema autónomo validado.**
 
-SAM se está construyendo como una IA modular con dos modos: **TRABAJO** y **EVOLUCIÓN**. Su primer laboratorio estudia comprensión del español panhispánico, pragmática, ironía, sátira, crítica y humor intelectual absurdo, además de cinco ámbitos de conocimiento: **biología, física, química, matemáticas y psicología**.
+SAM se está construyendo como una IA modular con dos modos: **TRABAJO** y **EVOLUCIÓN**. Su fundamento es el **razonamiento interdominios**: entender, relacionar conocimientos distantes, extrapolar e interpolar con cautela, generar hipótesis y refutarlas. También estudia la diversidad neurocognitiva, incluida la coexistencia de altas capacidades, autismo y TDAH, sin atribuir diagnósticos humanos a la IA. Su primer laboratorio estudia comprensión del español panhispánico, pragmática, ironía, sátira, crítica y humor intelectual absurdo, además de cinco ámbitos de conocimiento: **biología, física, química, matemáticas y psicología**.
 
 ## Condiciones de diseño
 - **Cero gasto obligatorio:** sin APIs de pago ni servicios contratados. Los ejercicios y tests iniciales son ejecutables con Python estándar. El uso de modelos abiertos se realizará en infraestructura gratuita disponible y compatible, sin garantía de GPU o funcionamiento continuo.
@@ -12,6 +12,10 @@ SAM se está construyendo como una IA modular con dos modos: **TRABAJO** y **EVO
 - **Evolución:** experimenta en ramas/candidatos; no despliega mejoras automáticamente.
 - **Verificación interna independiente:** las pruebas de referencia no se generan ni se corrigen por el mismo agente candidato, y pueden fallar o abstenerse.
 - **Aprendizaje trazable:** memoria/cápsulas con fuentes y evidencia. Pasar tests no reentrena parámetros del modelo.
+
+## Documento fundacional
+- [Fundamento cognitivo de SAM](diseno/FUNDAMENTO_COGNITIVO.md): neurodiversidad, triple excepcionalidad (término no unívoco), metacognición y transferencia entre dominios.
+- [Retos interdominios originales](evaluacion/desafios_interdominios.json): analogías, refutaciones, interpolación, extrapolación y conexiones entre ciencias y humor. **Son retos de diseño, no una demostración de aprendizaje.**
 
 ## Primeros módulos
 1. **Evaluación:** banco de casos con enunciado, dominio, habilidad, respuesta verificable y explicación.
