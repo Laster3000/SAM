@@ -20,7 +20,7 @@ SAM se está construyendo como una IA modular con dos modos: **TRABAJO** y **EVO
 ## Primeros módulos
 1. **Evaluación:** banco de casos con enunciado, dominio, habilidad, respuesta verificable y explicación.
 2. **Cápsulas:** conocimiento estructurado, reversible y con referencias; sin confundir hipótesis con evidencias.
-3. **Duelo:** adaptadores para dos modelos de pesos abiertos, con creador y crítico, y límites de rondas. No activado hasta disponer de ejecutores compatibles.
+3. **Duelo:** ejecutado en CI con dos GGUF abiertos pequeños (Qwen3-0.6B y Qwen2.5-0.5B-Instruct), alternancia creador/crítico, evidencia experimental; sin validación de capacidad general.
 4. **Entrenamiento:** opcional posterior con datos cuya licencia lo permita, evaluado contra casos inéditos.
 
 ## Objetivos de aprendizaje
@@ -34,7 +34,7 @@ SAM se está construyendo como una IA modular con dos modos: **TRABAJO** y **EVO
 
 ## Próximos hitos
 - [ ] Incorporar corpus inicial original con revisión humana y pruebas automáticas.
-- [ ] Probar 2 modelos de pesos abiertos sin pagos y medir recursos reales.
+- [x] Probar 2 modelos abiertos en CI sin pagos; las métricas de calidad siguen siendo insuficientes para declararlos competentes.
 - [ ] Registrar resultados reproducibles y crear cápsulas **candidatas**.
 - [ ] Verificar generalización en casos inéditos antes de promocionar conocimiento.
 - [ ] Mantener el PC apagado durante un ciclo remoto exitoso para demostrar independencia.
@@ -42,5 +42,27 @@ SAM se está construyendo como una IA modular con dos modos: **TRABAJO** y **EVO
 Este repositorio representa un **laboratorio de construcción**, no resultados E2E ya acreditados.
 
 
-## R007 — Variedad y aprendizaje verificable (rama experimental)
-La rama `sam-r007-ingesta-evaluacion` incorpora un selector de dominios/habilidades variados, un comparador de razonamiento directo frente a divergente sobre ejercicios reservados y una bandeja de información con consentimiento. Véase [documentación R007](diseno/SAM-R007-EXPERIMENTOS-VARIADOS.md). El repositorio continúa público, pero el contenido de conversaciones se guarda localmente. GitHub Actions opera en tandas con límites; no puede convertirse en un servidor permanente ilimitado.
+## R007/R008/R009 — Módulos de laboratorio integrados en `main`
+La rama de desarrollo `sam-r007-ingesta-evaluacion`, integrada tras 64 pruebas unitarias satisfactorias el 18-11-2026, incorpora un selector de dominios/habilidades variados, un comparador de razonamiento directo frente a divergente sobre ejercicios reservados y una bandeja de información con consentimiento. Véase [documentación R007](diseno/SAM-R007-EXPERIMENTOS-VARIADOS.md). El repositorio continúa público, pero el contenido de conversaciones se guarda localmente. GitHub Actions opera en tandas con límites; no puede convertirse en un servidor permanente ilimitado.
+
+
+## Capacidades reales y límites (18-11-2026)
+
+| Capacidad | Estado |
+|---|---|
+| Dos modelos abiertos que crean, critican y revisan | Probada en GitHub Actions, modelos muy pequeños |
+| Memoria persistida entre tandas con ledger y SHA | Experimental, candidata GitHub, no canon TCSA |
+| Selección variada por dominio y habilidad | Probada como código |
+| Investigación Wikipedia, analogías, refutaciones | Prototipo; fuentes y respuestas no contrastadas independientemente |
+| Modos TRABAJO/EVOLUCIÓN y respuesta a fichero | Interfaz de laboratorio, no servicio de producción |
+| Fusionar, dividir, podar agentes de forma reversible | Planes candidatos, no autoejecución ni trasplante de pesos |
+| Automejora de estrategias por modelos rivales | Candidatos desde catálogo fijo, no autopromoción |
+| Entrada de conocimiento privado consentido | Código local inactivo; sin conexión ChatGPT/AF ni subida a GitHub |
+| Autoridad del propietario y RAMSES DICE | Ticket HMAC simulado, NO autenticador humano real |
+| Evaluación holdout y métricas por habilidad | Banco público, repeticiones expuestas, sin prueba de generalización |
+| 24/7 de inferencia y entrenamiento neuronal | **NO disponible en GitHub Actions**; requiere servicio externo siempre encendido autorizado |
+| Reconciliación GitHub→TCSA | Metadatos manuales, importación canónica automática pendiente |
+
+[Modo TRABAJO](diseno/SAM-R009-INTERFAZ-TRABAJO.md) · [Arquitectura y evidencias](diseno/SAM-R009-MODOS-Y-EVIDENCIA.md) · [Recuperación de memoria entre ramas](diseno/SAM-R009-RECUPERACION-ENTRE-RAMAS.md) · [Ejecuciones GitHub](https://github.com/Laster3000/SAM/actions)
+
+**GitHub Actions es CI de desarrollo y pruebas, no una plataforma para hospedar una IA ininterrumpida.** Los ciclos encadenados del proyecto están deliberadamente acotados. El objetivo de ejecución continua y aprendizaje generalizable sigue pendiente de verificarse en infraestructura autorizada sin tocar el PC del propietario.
