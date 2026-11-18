@@ -3,11 +3,11 @@
   "dominios": {
     "biologia": {
       "practice": {
-        "attempts": 43,
-        "unique_tasks": 34,
-        "repetitions": 9,
+        "attempts": 48,
+        "unique_tasks": 36,
+        "repetitions": 12,
         "exact_matches": 5,
-        "literal_rate": 0.1163
+        "literal_rate": 0.1042
       },
       "holdout": {
         "attempts": 5,
@@ -19,31 +19,31 @@
     },
     "espanol": {
       "practice": {
-        "attempts": 42,
+        "attempts": 48,
         "unique_tasks": 25,
-        "repetitions": 17,
+        "repetitions": 23,
         "exact_matches": 2,
-        "literal_rate": 0.0476
+        "literal_rate": 0.0417
       },
       "holdout": {
-        "attempts": 4,
+        "attempts": 5,
         "unique_tasks": 4,
-        "repetitions": 0,
+        "repetitions": 1,
         "exact_matches": 0,
         "literal_rate": 0.0
       }
     },
     "fisica": {
       "practice": {
-        "attempts": 40,
-        "unique_tasks": 37,
-        "repetitions": 3,
+        "attempts": 46,
+        "unique_tasks": 39,
+        "repetitions": 7,
         "exact_matches": 0,
         "literal_rate": 0.0
       },
       "holdout": {
-        "attempts": 5,
-        "unique_tasks": 5,
+        "attempts": 6,
+        "unique_tasks": 6,
         "repetitions": 0,
         "exact_matches": 0,
         "literal_rate": 0.0
@@ -51,9 +51,9 @@
     },
     "interdominios": {
       "practice": {
-        "attempts": 35,
+        "attempts": 39,
         "unique_tasks": 9,
-        "repetitions": 26,
+        "repetitions": 30,
         "exact_matches": 0,
         "literal_rate": 0.0
       },
@@ -67,11 +67,11 @@
     },
     "matematicas": {
       "practice": {
-        "attempts": 41,
-        "unique_tasks": 41,
-        "repetitions": 0,
-        "exact_matches": 16,
-        "literal_rate": 0.3902
+        "attempts": 46,
+        "unique_tasks": 45,
+        "repetitions": 1,
+        "exact_matches": 18,
+        "literal_rate": 0.3913
       },
       "holdout": {
         "attempts": 4,
@@ -83,47 +83,47 @@
     },
     "psicologia": {
       "practice": {
-        "attempts": 41,
-        "unique_tasks": 34,
-        "repetitions": 7,
-        "exact_matches": 8,
-        "literal_rate": 0.1951
-      },
-      "holdout": {
-        "attempts": 4,
-        "unique_tasks": 4,
-        "repetitions": 0,
-        "exact_matches": 0,
-        "literal_rate": 0.0
-      }
-    },
-    "quimica": {
-      "practice": {
-        "attempts": 40,
-        "unique_tasks": 33,
-        "repetitions": 7,
-        "exact_matches": 4,
-        "literal_rate": 0.1
+        "attempts": 45,
+        "unique_tasks": 35,
+        "repetitions": 10,
+        "exact_matches": 9,
+        "literal_rate": 0.2
       },
       "holdout": {
         "attempts": 5,
         "unique_tasks": 5,
+        "repetitions": 0,
+        "exact_matches": 1,
+        "literal_rate": 0.2
+      }
+    },
+    "quimica": {
+      "practice": {
+        "attempts": 44,
+        "unique_tasks": 35,
+        "repetitions": 9,
+        "exact_matches": 5,
+        "literal_rate": 0.1136
+      },
+      "holdout": {
+        "attempts": 6,
+        "unique_tasks": 6,
         "repetitions": 0,
         "exact_matches": 0,
         "literal_rate": 0.0
       }
     }
   },
-  "holdout_unicos": 29,
-  "holdout_intentos": 32,
-  "holdout_repeticiones": 3,
+  "holdout_unicos": 32,
+  "holdout_intentos": 36,
+  "holdout_repeticiones": 4,
   "pesos_entrenados": false,
   "benchmark_independiente": false,
   "generalizacion_certificada": false,
   "aprendizaje_demostrado": false,
   "motivo": "Holdout sintético de corpus público y posiblemente repetido; sin comparación externa controlada ni entrenamiento de pesos.",
   "estado": "EXPERIMENTO_NO_CANONICO",
-  "ledger_sha256": "282a66732cef2a9081df522ce9ac9cb88a079ce93e881aa07fedea1a3e78bf27",
-  "ledger_events": 314,
+  "ledger_sha256": "e4747ca706009761213724ff4bd03d66b44a1f2483b0d7216b233799a15e8c8e",
+  "ledger_events": 352,
   "canonical_status": "CANDIDATE_PENDING_TCSA"
 }
