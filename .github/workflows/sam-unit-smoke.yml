@@ -1,0 +1,29 @@
+name: SAM - comprobaciones rápidas de arquitectura y seguridad
+on:
+  push:
+    paths:
+      - "sam/**"
+      - "tests/**"
+      - ".github/workflows/sam-unit-smoke.yml"
+  pull_request:
+    paths:
+      - "sam/**"
+      - "tests/**"
+      - ".github/workflows/sam-unit-smoke.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: sam-smoke-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  pruebas:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Contratos, integridad, modos y tests sin descargas de modelos
+        run: |
+          python3 -m compileall -q sam tests
+          python3 -m unittest discover -s tests -v
+          python3 -m sam.worker --dry-run
