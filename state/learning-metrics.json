@@ -1,0 +1,129 @@
+{
+  "schema": "sam.learning-evidence.v1",
+  "dominios": {
+    "biologia": {
+      "practice": {
+        "attempts": 57,
+        "unique_tasks": 36,
+        "repetitions": 21,
+        "exact_matches": 6,
+        "literal_rate": 0.1053
+      },
+      "holdout": {
+        "attempts": 7,
+        "unique_tasks": 5,
+        "repetitions": 2,
+        "exact_matches": 1,
+        "literal_rate": 0.1429
+      }
+    },
+    "espanol": {
+      "practice": {
+        "attempts": 56,
+        "unique_tasks": 25,
+        "repetitions": 31,
+        "exact_matches": 2,
+        "literal_rate": 0.0357
+      },
+      "holdout": {
+        "attempts": 6,
+        "unique_tasks": 4,
+        "repetitions": 2,
+        "exact_matches": 0,
+        "literal_rate": 0.0
+      }
+    },
+    "fisica": {
+      "practice": {
+        "attempts": 55,
+        "unique_tasks": 41,
+        "repetitions": 14,
+        "exact_matches": 1,
+        "literal_rate": 0.0182
+      },
+      "holdout": {
+        "attempts": 7,
+        "unique_tasks": 6,
+        "repetitions": 1,
+        "exact_matches": 0,
+        "literal_rate": 0.0
+      }
+    },
+    "interdominios": {
+      "practice": {
+        "attempts": 47,
+        "unique_tasks": 9,
+        "repetitions": 38,
+        "exact_matches": 0,
+        "literal_rate": 0.0
+      },
+      "holdout": {
+        "attempts": 7,
+        "unique_tasks": 2,
+        "repetitions": 5,
+        "exact_matches": 0,
+        "literal_rate": 0.0
+      }
+    },
+    "matematicas": {
+      "practice": {
+        "attempts": 55,
+        "unique_tasks": 46,
+        "repetitions": 9,
+        "exact_matches": 22,
+        "literal_rate": 0.4
+      },
+      "holdout": {
+        "attempts": 5,
+        "unique_tasks": 4,
+        "repetitions": 1,
+        "exact_matches": 4,
+        "literal_rate": 0.8
+      }
+    },
+    "psicologia": {
+      "practice": {
+        "attempts": 54,
+        "unique_tasks": 35,
+        "repetitions": 19,
+        "exact_matches": 12,
+        "literal_rate": 0.2222
+      },
+      "holdout": {
+        "attempts": 5,
+        "unique_tasks": 5,
+        "repetitions": 0,
+        "exact_matches": 1,
+        "literal_rate": 0.2
+      }
+    },
+    "quimica": {
+      "practice": {
+        "attempts": 54,
+        "unique_tasks": 36,
+        "repetitions": 18,
+        "exact_matches": 7,
+        "literal_rate": 0.1296
+      },
+      "holdout": {
+        "attempts": 7,
+        "unique_tasks": 6,
+        "repetitions": 1,
+        "exact_matches": 1,
+        "literal_rate": 0.1429
+      }
+    }
+  },
+  "holdout_unicos": 32,
+  "holdout_intentos": 44,
+  "holdout_repeticiones": 12,
+  "pesos_entrenados": false,
+  "benchmark_independiente": false,
+  "generalizacion_certificada": false,
+  "aprendizaje_demostrado": false,
+  "motivo": "Holdout sintético de corpus público y posiblemente repetido; sin comparación externa controlada ni entrenamiento de pesos.",
+  "estado": "EXPERIMENTO_NO_CANONICO",
+  "ledger_sha256": "bbb811490ffaf1dea34055fdc66be2a1782108b6d8139362527873dfe22a83b7",
+  "ledger_events": 422,
+  "canonical_status": "CANDIDATE_PENDING_TCSA"
+}
