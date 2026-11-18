@@ -13,8 +13,8 @@ on:
         type: string
         default: "0"
   schedule:
-    # 4 rondas/día de pruebas de software, NO alquiler continuo de cómputo
-    - cron: "23 2,8,14,20 * * *"
+    # Cuatro ventanas de ensayos de software al día; minuto distinto del pico :00
+    - cron: "37 2,8,14,20 * * *"
 permissions:
   contents: write
   actions: write
@@ -110,7 +110,22 @@ jobs:
           cp resultados/sam-*.json /tmp/
           cd /tmp/sam-candidates
           test ! -f state/eventos.jsonl || test "$(stat -c %s state/eventos.jsonl)" -lt 104857600
-          cat /tmp/sam-nuevos-eventos.jsonl >> state/eventos.jsonl
+          if [ "$SAM_CANDIDATE_BRANCH" = "sam-candidates" ]; then
+            # Importar también experimentos de la rama aislada, sin duplicar ni sobrescribir.
+            if git ls-remote --exit-code --heads origin sam-r008-candidates >/dev/null; then
+              git fetch --no-tags --depth=1 origin refs/heads/sam-r008-candidates:refs/remotes/origin/sam-r008-candidates
+              if git cat-file -e origin/sam-r008-candidates:state/eventos.jsonl 2>/dev/null; then
+                git show origin/sam-r008-candidates:state/eventos.jsonl > /tmp/sam-eventos-experimentales.jsonl
+                (cd "$GITHUB_WORKSPACE" && python3 -m sam.ledger_union /tmp/sam-candidates/state/eventos.jsonl /tmp/sam-eventos-experimentales.jsonl /tmp/sam-nuevos-eventos.jsonl --output /tmp/sam-candidates/state/eventos.jsonl)
+              else
+                cat /tmp/sam-nuevos-eventos.jsonl >> state/eventos.jsonl
+              fi
+            else
+              cat /tmp/sam-nuevos-eventos.jsonl >> state/eventos.jsonl
+            fi
+          else
+            cat /tmp/sam-nuevos-eventos.jsonl >> state/eventos.jsonl
+          fi
           for f in /tmp/sam-*.json; do
             test -f "$f" || continue
             cp "$f" runs/
