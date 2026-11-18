@@ -96,6 +96,7 @@ jobs:
             --state .sam-state --reports resultados \
             --batch 14 --holdout-cases 2 --research-topics 3 --diverse --strategy-cases 2 --self-evolve-cases 2 --max-cycles 2 --interval 0 --min-free-gb 1.0
           python3 -m sam.quality .sam-state/eventos.jsonl --manifest .sam-state/ledger-manifest.json
+          python3 -m sam.metrics .sam-state/eventos.jsonl --output .sam-state/learning-metrics.json
       - name: Archivo durable en rama sam-candidates, no en main ni en TCSA
         shell: bash
         run: |
@@ -120,7 +121,8 @@ jobs:
             fi
           done
           (cd "$GITHUB_WORKSPACE" && python3 -m sam.quality /tmp/sam-candidates/state/eventos.jsonl --manifest /tmp/sam-candidates/state/ledger-manifest.json)
-          git add state/eventos.jsonl state/ledger-manifest.json runs/ auto-propuestas/
+          (cd "$GITHUB_WORKSPACE" && python3 -m sam.metrics /tmp/sam-candidates/state/eventos.jsonl --output /tmp/sam-candidates/state/learning-metrics.json)
+          git add state/eventos.jsonl state/ledger-manifest.json state/learning-metrics.json runs/ auto-propuestas/
           git commit -m "SAM: experiencias candidatas GitHub run $GITHUB_RUN_ID"
           git push origin "HEAD:refs/heads/$SAM_CANDIDATE_BRANCH"
           echo "CANDIDATOS_PUBLICADOS_NO_CANONICOS: $GITHUB_RUN_ID"
@@ -133,6 +135,7 @@ jobs:
             resultados/*.json
             .sam-state/eventos.jsonl
             .sam-state/ledger-manifest.json
+            .sam-state/learning-metrics.json
             resultados/auto-propuestas/*.json
             resultados/auto-propuestas/*.py
           if-no-files-found: warn
