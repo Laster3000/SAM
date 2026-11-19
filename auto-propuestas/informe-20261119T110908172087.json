@@ -1,0 +1,129 @@
+{
+  "advertencia": "Se genera Python desde catálogo fijo y no se ejecuta. Casos de práctica no vistos por memoria, pero currículo público; los modelos no han cambiado sus pesos y no se autoriza promoción.",
+  "casos": [
+    {
+      "dominio": "fisica",
+      "habilidad": "energia",
+      "id": "gen-ec-4-4",
+      "resultados": {
+        "actual": {
+          "coincidencia_exacta": false,
+          "modelo": "Qwen3-0.6B",
+          "respuesta": null
+        },
+        "candidato": {
+          "coincidencia_exacta": false,
+          "modelo": "Qwen3-0.6B",
+          "respuesta": null
+        }
+      }
+    },
+    {
+      "dominio": "fisica",
+      "habilidad": "energia",
+      "id": "gen-ec-4-8",
+      "resultados": {
+        "actual": {
+          "coincidencia_exacta": false,
+          "modelo": "Qwen2.5-0.5B-Instruct",
+          "respuesta": "32 Joules"
+        },
+        "candidato": {
+          "coincidencia_exacta": false,
+          "modelo": "Qwen2.5-0.5B-Instruct",
+          "respuesta": null
+        }
+      }
+    }
+  ],
+  "codigo_ejecutado": false,
+  "estado": "CANDIDATE_PENDING_TCSA",
+  "evaluacion": "PRACTICA_NO_VISTA_EN_MEMORIA_NO_HOLDOUT",
+  "foco": {
+    "aciertos": 0,
+    "dominio": "fisica",
+    "fallos_en_tareas_distintas": 43,
+    "habilidad": "energia",
+    "intentos": 47
+  },
+  "focos_errores": [
+    {
+      "aciertos": 0,
+      "dominio": "fisica",
+      "fallos_en_tareas_distintas": 43,
+      "habilidad": "energia",
+      "intentos": 47
+    },
+    {
+      "aciertos": 4,
+      "dominio": "quimica",
+      "fallos_en_tareas_distintas": 40,
+      "habilidad": "masas_molares",
+      "intentos": 48
+    },
+    {
+      "aciertos": 10,
+      "dominio": "biologia",
+      "fallos_en_tareas_distintas": 35,
+      "habilidad": "modelos_celulares",
+      "intentos": 49
+    },
+    {
+      "aciertos": 16,
+      "dominio": "matematicas",
+      "fallos_en_tareas_distintas": 29,
+      "habilidad": "algebra",
+      "intentos": 47
+    },
+    {
+      "aciertos": 13,
+      "dominio": "psicologia",
+      "fallos_en_tareas_distintas": 28,
+      "habilidad": "metodologia_estadistica",
+      "intentos": 43
+    },
+    {
+      "aciertos": 2,
+      "dominio": "fisica",
+      "fallos_en_tareas_distintas": 19,
+      "habilidad": "mecanica",
+      "intentos": 22
+    },
+    {
+      "aciertos": 0,
+      "dominio": "espanol",
+      "fallos_en_tareas_distintas": 11,
+      "habilidad": "variantes_panhispanicas",
+      "intentos": 21
+    },
+    {
+      "aciertos": 9,
+      "dominio": "matematicas",
+      "fallos_en_tareas_distintas": 6,
+      "habilidad": "aritmetica",
+      "intentos": 15
+    }
+  ],
+  "modo": "EVOLUCION_AISLADA",
+  "promotion": "BLOQUEADA_HASTA_REVISION_TCSA",
+  "propuesta": {
+    "archivo": "auto-propuestas/0ae6ff0f06da9781.py",
+    "critica": "Loading model... |\b-\b\\\b|\b/\b \b\n\n▄▄ ▄▄\n██ ██\n██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄\n██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██\n██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀\n                                    ██    ██\n                                    ▀▀    ▀▀\n\nbuild      : b12483-08a9b3589\nmodel      : runtime/modelos/qwen25.gguf\nftype      : Q4_K - Medium\nmodalities : text\n\navailable commands:\n  /exit or Ctrl+C     stop or exit\n  /regen              regenerate the last response\n  /clear              clear the chat history\n  /read <file>        add a text file\n  /glob <pattern>     add text files using globbing pattern\n\n\n\n> <|im_start|>system\nEres crítico independiente de estrategias. Cuestiona la utilidad, sesgos y limitaciones. No produces código ni órdenes. Responde breve.\n/no_think\n\n<|im_start|>user\nProblema: SAM falló en la materia fisica, habilidad energia, en 43 ejercicios de práctica distintos. No tienes respuestas de referencia. Selecciona una estrategia de la",
+    "estado": "CANDIDATO_NO_APROBADO",
+    "estrategia": "unidades",
+    "modelo_critico": "Qwen2.5-0.5B-Instruct",
+    "modelo_proponente": "Qwen3-0.6B",
+    "origen": "REGLA_DE_RESPALDO",
+    "sha256_codigo": "0ae6ff0f06da97818738d2a96361f6491103fdf6cea5c1293219b7e464a19def",
+    "sugerencia_cruda": "STRATEGIA: UNIDADES"
+  },
+  "resultado": "SIN_MEJORA_DEMOSTRADA_EN_ESTE_LOTE",
+  "resumen": {
+    "aciertos_actual": 0,
+    "aciertos_candidato": 0,
+    "diferencia": 0,
+    "ejercicios": 2
+  },
+  "schema": "sam.self_evolve.v1",
+  "utc": "2026-11-19T11:08:57.648131+00:00"
+}
