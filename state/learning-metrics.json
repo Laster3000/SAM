@@ -3,43 +3,43 @@
   "dominios": {
     "biologia": {
       "practice": {
-        "attempts": 102,
-        "unique_tasks": 49,
-        "repetitions": 53,
+        "attempts": 107,
+        "unique_tasks": 50,
+        "repetitions": 57,
         "exact_matches": 9,
-        "literal_rate": 0.0882
+        "literal_rate": 0.0841
       },
       "holdout": {
-        "attempts": 11,
-        "unique_tasks": 9,
+        "attempts": 12,
+        "unique_tasks": 10,
         "repetitions": 2,
         "exact_matches": 1,
-        "literal_rate": 0.0909
+        "literal_rate": 0.0833
       }
     },
     "espanol": {
       "practice": {
-        "attempts": 101,
+        "attempts": 107,
         "unique_tasks": 25,
-        "repetitions": 76,
+        "repetitions": 82,
         "exact_matches": 8,
-        "literal_rate": 0.0792
+        "literal_rate": 0.0748
       },
       "holdout": {
-        "attempts": 11,
+        "attempts": 12,
         "unique_tasks": 4,
-        "repetitions": 7,
+        "repetitions": 8,
         "exact_matches": 0,
         "literal_rate": 0.0
       }
     },
     "fisica": {
       "practice": {
-        "attempts": 100,
-        "unique_tasks": 64,
-        "repetitions": 36,
+        "attempts": 106,
+        "unique_tasks": 66,
+        "repetitions": 40,
         "exact_matches": 2,
-        "literal_rate": 0.02
+        "literal_rate": 0.0189
       },
       "holdout": {
         "attempts": 13,
@@ -51,43 +51,43 @@
     },
     "interdominios": {
       "practice": {
-        "attempts": 83,
+        "attempts": 87,
         "unique_tasks": 9,
-        "repetitions": 74,
+        "repetitions": 78,
         "exact_matches": 0,
         "literal_rate": 0.0
       },
       "holdout": {
-        "attempts": 12,
+        "attempts": 13,
         "unique_tasks": 2,
-        "repetitions": 10,
+        "repetitions": 11,
         "exact_matches": 0,
         "literal_rate": 0.0
       }
     },
     "matematicas": {
       "practice": {
-        "attempts": 100,
-        "unique_tasks": 82,
-        "repetitions": 18,
-        "exact_matches": 40,
-        "literal_rate": 0.4
+        "attempts": 105,
+        "unique_tasks": 86,
+        "repetitions": 19,
+        "exact_matches": 44,
+        "literal_rate": 0.419
       },
       "holdout": {
-        "attempts": 10,
-        "unique_tasks": 9,
+        "attempts": 11,
+        "unique_tasks": 10,
         "repetitions": 1,
-        "exact_matches": 8,
-        "literal_rate": 0.8
+        "exact_matches": 9,
+        "literal_rate": 0.8182
       }
     },
     "psicologia": {
       "practice": {
-        "attempts": 99,
-        "unique_tasks": 48,
-        "repetitions": 51,
-        "exact_matches": 18,
-        "literal_rate": 0.1818
+        "attempts": 103,
+        "unique_tasks": 50,
+        "repetitions": 53,
+        "exact_matches": 19,
+        "literal_rate": 0.1845
       },
       "holdout": {
         "attempts": 11,
@@ -99,11 +99,11 @@
     },
     "quimica": {
       "practice": {
-        "attempts": 99,
-        "unique_tasks": 50,
-        "repetitions": 49,
-        "exact_matches": 17,
-        "literal_rate": 0.1717
+        "attempts": 103,
+        "unique_tasks": 51,
+        "repetitions": 52,
+        "exact_matches": 18,
+        "literal_rate": 0.1748
       },
       "holdout": {
         "attempts": 12,
@@ -114,16 +114,16 @@
       }
     }
   },
-  "holdout_unicos": 58,
-  "holdout_intentos": 80,
-  "holdout_repeticiones": 22,
+  "holdout_unicos": 60,
+  "holdout_intentos": 84,
+  "holdout_repeticiones": 24,
   "pesos_entrenados": false,
   "benchmark_independiente": false,
   "generalizacion_certificada": false,
   "aprendizaje_demostrado": false,
   "motivo": "Holdout sintético de corpus público y posiblemente repetido; sin comparación externa controlada ni entrenamiento de pesos.",
   "estado": "EXPERIMENTO_NO_CANONICO",
-  "ledger_sha256": "79d95764a2b369f8534db40e59afdffcc37f3f72b65fd126055becdff347196b",
-  "ledger_events": 764,
+  "ledger_sha256": "31a8618750b08e15e360b48832eab21e0dbd984a28a7c4b7c325a402a9e3dcf5",
+  "ledger_events": 802,
   "canonical_status": "CANDIDATE_PENDING_TCSA"
 }
