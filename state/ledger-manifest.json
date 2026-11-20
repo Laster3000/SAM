@@ -1,23 +1,23 @@
 {
   "schema": "sam.ledger.audit.v1",
-  "events": 1106,
-  "exact_matches": 163,
+  "events": 1144,
+  "exact_matches": 169,
   "by_domain": {
-    "biologia": 164,
-    "espanol": 162,
-    "fisica": 163,
-    "interdominios": 137,
-    "matematicas": 160,
-    "psicologia": 159,
-    "quimica": 161
+    "biologia": 169,
+    "espanol": 169,
+    "fisica": 170,
+    "interdominios": 141,
+    "matematicas": 165,
+    "psicologia": 164,
+    "quimica": 166
   },
   "by_dataset": {
-    "practice": 990,
-    "holdout": 116
+    "practice": 1024,
+    "holdout": 120
   },
-  "sha256": "5311f8f6ae1639d729d866041378d5ceef23df9ae37a252a6b3f68b8f59da39d",
-  "git_blob_sha1": "2fe3c5546a763856e488402f1b6cfc4f9a4bed2f",
-  "bytes": 6381302,
+  "sha256": "3341c3460880b69ddfe583fcf7490245c8205a52cf4e4526ffa4679cd1e1df76",
+  "git_blob_sha1": "8cfb61e1827dbc96effb9f596017ce7568092d15",
+  "bytes": 6605051,
   "tcsa_status": "CANDIDATE_PENDING_TCSA",
   "warning": "Auditoría de integridad y comparaciones exactas, no aprendizaje certificado."
 }
