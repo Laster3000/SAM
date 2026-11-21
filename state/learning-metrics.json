@@ -3,11 +3,11 @@
   "dominios": {
     "biologia": {
       "practice": {
-        "attempts": 167,
-        "unique_tasks": 68,
-        "repetitions": 99,
+        "attempts": 171,
+        "unique_tasks": 69,
+        "repetitions": 102,
         "exact_matches": 11,
-        "literal_rate": 0.0659
+        "literal_rate": 0.0643
       },
       "holdout": {
         "attempts": 19,
@@ -19,41 +19,41 @@
     },
     "espanol": {
       "practice": {
-        "attempts": 167,
+        "attempts": 171,
         "unique_tasks": 25,
-        "repetitions": 142,
-        "exact_matches": 12,
-        "literal_rate": 0.0719
+        "repetitions": 146,
+        "exact_matches": 13,
+        "literal_rate": 0.076
       },
       "holdout": {
-        "attempts": 18,
+        "attempts": 19,
         "unique_tasks": 4,
-        "repetitions": 14,
+        "repetitions": 15,
         "exact_matches": 0,
         "literal_rate": 0.0
       }
     },
     "fisica": {
       "practice": {
-        "attempts": 166,
-        "unique_tasks": 97,
-        "repetitions": 69,
+        "attempts": 171,
+        "unique_tasks": 98,
+        "repetitions": 73,
         "exact_matches": 5,
-        "literal_rate": 0.0301
+        "literal_rate": 0.0292
       },
       "holdout": {
-        "attempts": 20,
+        "attempts": 21,
         "unique_tasks": 18,
-        "repetitions": 2,
+        "repetitions": 3,
         "exact_matches": 0,
         "literal_rate": 0.0
       }
     },
     "interdominios": {
       "practice": {
-        "attempts": 135,
+        "attempts": 139,
         "unique_tasks": 9,
-        "repetitions": 126,
+        "repetitions": 130,
         "exact_matches": 0,
         "literal_rate": 0.0
       },
@@ -67,43 +67,43 @@
     },
     "matematicas": {
       "practice": {
-        "attempts": 165,
-        "unique_tasks": 134,
-        "repetitions": 31,
+        "attempts": 171,
+        "unique_tasks": 138,
+        "repetitions": 33,
         "exact_matches": 68,
-        "literal_rate": 0.4121
+        "literal_rate": 0.3977
       },
       "holdout": {
-        "attempts": 17,
-        "unique_tasks": 16,
+        "attempts": 18,
+        "unique_tasks": 17,
         "repetitions": 1,
         "exact_matches": 11,
-        "literal_rate": 0.6471
+        "literal_rate": 0.6111
       }
     },
     "psicologia": {
       "practice": {
-        "attempts": 163,
-        "unique_tasks": 66,
-        "repetitions": 97,
+        "attempts": 169,
+        "unique_tasks": 68,
+        "repetitions": 101,
         "exact_matches": 33,
-        "literal_rate": 0.2025
+        "literal_rate": 0.1953
       },
       "holdout": {
-        "attempts": 18,
+        "attempts": 19,
         "unique_tasks": 13,
-        "repetitions": 5,
+        "repetitions": 6,
         "exact_matches": 5,
-        "literal_rate": 0.2778
+        "literal_rate": 0.2632
       }
     },
     "quimica": {
       "practice": {
-        "attempts": 163,
-        "unique_tasks": 68,
-        "repetitions": 95,
-        "exact_matches": 37,
-        "literal_rate": 0.227
+        "attempts": 168,
+        "unique_tasks": 70,
+        "repetitions": 98,
+        "exact_matches": 39,
+        "literal_rate": 0.2321
       },
       "holdout": {
         "attempts": 20,
@@ -114,16 +114,16 @@
       }
     }
   },
-  "holdout_unicos": 88,
-  "holdout_intentos": 132,
-  "holdout_repeticiones": 44,
+  "holdout_unicos": 89,
+  "holdout_intentos": 136,
+  "holdout_repeticiones": 47,
   "pesos_entrenados": false,
   "benchmark_independiente": false,
   "generalizacion_certificada": false,
   "aprendizaje_demostrado": false,
   "motivo": "Holdout sintético de corpus público y posiblemente repetido; sin comparación externa controlada ni entrenamiento de pesos.",
   "estado": "EXPERIMENTO_NO_CANONICO",
-  "ledger_sha256": "bf8d3b27756a30c7c0a3c7a00edcbbef08af831169df377fb11ad679ee16b846",
-  "ledger_events": 1258,
+  "ledger_sha256": "a9452553bf99b675f1840429179b375d9da8a862e4251d762222893fca341849",
+  "ledger_events": 1296,
   "canonical_status": "CANDIDATE_PENDING_TCSA"
 }
