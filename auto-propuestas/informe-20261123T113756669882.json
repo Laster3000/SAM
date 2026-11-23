@@ -1,0 +1,129 @@
+{
+  "advertencia": "Se genera Python desde catálogo fijo y no se ejecuta. Casos de práctica no vistos por memoria, pero currículo público; los modelos no han cambiado sus pesos y no se autoriza promoción.",
+  "casos": [
+    {
+      "dominio": "biologia",
+      "habilidad": "modelos_celulares",
+      "id": "gen-cel-5-2",
+      "resultados": {
+        "actual": {
+          "coincidencia_exacta": false,
+          "modelo": "Qwen3-0.6B",
+          "respuesta": null
+        },
+        "candidato": {
+          "coincidencia_exacta": false,
+          "modelo": "Qwen3-0.6B",
+          "respuesta": null
+        }
+      }
+    },
+    {
+      "dominio": "biologia",
+      "habilidad": "modelos_celulares",
+      "id": "gen-cel-5-3",
+      "resultados": {
+        "actual": {
+          "coincidencia_exacta": false,
+          "modelo": "Qwen2.5-0.5B-Instruct",
+          "respuesta": "375"
+        },
+        "candidato": {
+          "coincidencia_exacta": false,
+          "modelo": "Qwen2.5-0.5B-Instruct",
+          "respuesta": null
+        }
+      }
+    }
+  ],
+  "codigo_ejecutado": false,
+  "estado": "CANDIDATE_PENDING_TCSA",
+  "evaluacion": "PRACTICA_NO_VISTA_EN_MEMORIA_NO_HOLDOUT",
+  "foco": {
+    "aciertos": 11,
+    "dominio": "biologia",
+    "fallos_en_tareas_distintas": 68,
+    "habilidad": "modelos_celulares",
+    "intentos": 83
+  },
+  "focos_errores": [
+    {
+      "aciertos": 11,
+      "dominio": "biologia",
+      "fallos_en_tareas_distintas": 68,
+      "habilidad": "modelos_celulares",
+      "intentos": 83
+    },
+    {
+      "aciertos": 10,
+      "dominio": "quimica",
+      "fallos_en_tareas_distintas": 68,
+      "habilidad": "masas_molares",
+      "intentos": 82
+    },
+    {
+      "aciertos": 0,
+      "dominio": "fisica",
+      "fallos_en_tareas_distintas": 57,
+      "habilidad": "energia",
+      "intentos": 81
+    },
+    {
+      "aciertos": 28,
+      "dominio": "matematicas",
+      "fallos_en_tareas_distintas": 51,
+      "habilidad": "algebra",
+      "intentos": 81
+    },
+    {
+      "aciertos": 26,
+      "dominio": "psicologia",
+      "fallos_en_tareas_distintas": 46,
+      "habilidad": "metodologia_estadistica",
+      "intentos": 78
+    },
+    {
+      "aciertos": 5,
+      "dominio": "fisica",
+      "fallos_en_tareas_distintas": 43,
+      "habilidad": "mecanica",
+      "intentos": 49
+    },
+    {
+      "aciertos": 20,
+      "dominio": "matematicas",
+      "fallos_en_tareas_distintas": 23,
+      "habilidad": "aritmetica",
+      "intentos": 43
+    },
+    {
+      "aciertos": 43,
+      "dominio": "matematicas",
+      "fallos_en_tareas_distintas": 16,
+      "habilidad": "porcentajes",
+      "intentos": 59
+    }
+  ],
+  "modo": "EVOLUCION_AISLADA",
+  "promotion": "BLOQUEADA_HASTA_REVISION_TCSA",
+  "propuesta": {
+    "archivo": "auto-propuestas/ed9bfe9dbb451718.py",
+    "critica": "Loading model... |\b-\b\\\b|\b/\b \b\n\n▄▄ ▄▄\n██ ██\n██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄\n██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██\n██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀\n                                    ██    ██\n                                    ▀▀    ▀▀\n\nbuild      : b12483-08a9b3589\nmodel      : runtime/modelos/qwen25.gguf\nftype      : Q4_K - Medium\nmodalities : text\n\navailable commands:\n  /exit or Ctrl+C     stop or exit\n  /regen              regenerate the last response\n  /clear              clear the chat history\n  /read <file>        add a text file\n  /glob <pattern>     add text files using globbing pattern\n\n\n\n> <|im_start|>system\nEres crítico independiente de estrategias. Cuestiona la utilidad, sesgos y limitaciones. No produces código ni órdenes. Responde breve.\n/no_think\n\n<|im_start|>user\nProblema: SAM falló en la materia biologia, habilidad modelos_celulares, en 68 ejercicios de práctica distintos. No tienes respuestas de referencia. Selecciona una estr",
+    "estado": "CANDIDATO_NO_APROBADO",
+    "estrategia": "descomponer",
+    "modelo_critico": "Qwen2.5-0.5B-Instruct",
+    "modelo_proponente": "Qwen3-0.6B",
+    "origen": "REGLA_DE_RESPALDO",
+    "sha256_codigo": "ed9bfe9dbb451718ccdc65c3414bb1c0ee07cc3bee04f2f1401a44665512283f",
+    "sugerencia_cruda": "STRATEGIA: INTERDOMINIOS"
+  },
+  "resultado": "SIN_MEJORA_DEMOSTRADA_EN_ESTE_LOTE",
+  "resumen": {
+    "aciertos_actual": 0,
+    "aciertos_candidato": 0,
+    "diferencia": 0,
+    "ejercicios": 2
+  },
+  "schema": "sam.self_evolve.v1",
+  "utc": "2026-11-23T11:37:43.242802+00:00"
+}
