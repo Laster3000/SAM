@@ -3,11 +3,11 @@
   "dominios": {
     "biologia": {
       "practice": {
-        "attempts": 372,
-        "unique_tasks": 126,
-        "repetitions": 246,
+        "attempts": 377,
+        "unique_tasks": 128,
+        "repetitions": 249,
         "exact_matches": 12,
-        "literal_rate": 0.0323
+        "literal_rate": 0.0318
       },
       "holdout": {
         "attempts": 43,
@@ -19,11 +19,11 @@
     },
     "espanol": {
       "practice": {
-        "attempts": 371,
+        "attempts": 377,
         "unique_tasks": 25,
-        "repetitions": 346,
-        "exact_matches": 28,
-        "literal_rate": 0.0755
+        "repetitions": 352,
+        "exact_matches": 29,
+        "literal_rate": 0.0769
       },
       "holdout": {
         "attempts": 42,
@@ -35,43 +35,43 @@
     },
     "fisica": {
       "practice": {
-        "attempts": 370,
+        "attempts": 376,
         "unique_tasks": 143,
-        "repetitions": 227,
+        "repetitions": 233,
         "exact_matches": 13,
-        "literal_rate": 0.0351
+        "literal_rate": 0.0346
       },
       "holdout": {
-        "attempts": 43,
+        "attempts": 44,
         "unique_tasks": 18,
-        "repetitions": 25,
+        "repetitions": 26,
         "exact_matches": 1,
-        "literal_rate": 0.0233
+        "literal_rate": 0.0227
       }
     },
     "interdominios": {
       "practice": {
-        "attempts": 299,
+        "attempts": 303,
         "unique_tasks": 9,
-        "repetitions": 290,
+        "repetitions": 294,
         "exact_matches": 0,
         "literal_rate": 0.0
       },
       "holdout": {
-        "attempts": 43,
+        "attempts": 44,
         "unique_tasks": 2,
-        "repetitions": 41,
+        "repetitions": 42,
         "exact_matches": 0,
         "literal_rate": 0.0
       }
     },
     "matematicas": {
       "practice": {
-        "attempts": 370,
-        "unique_tasks": 286,
-        "repetitions": 84,
-        "exact_matches": 139,
-        "literal_rate": 0.3757
+        "attempts": 375,
+        "unique_tasks": 288,
+        "repetitions": 87,
+        "exact_matches": 141,
+        "literal_rate": 0.376
       },
       "holdout": {
         "attempts": 41,
@@ -83,47 +83,47 @@
     },
     "psicologia": {
       "practice": {
-        "attempts": 369,
+        "attempts": 373,
         "unique_tasks": 80,
-        "repetitions": 289,
+        "repetitions": 293,
         "exact_matches": 72,
-        "literal_rate": 0.1951
+        "literal_rate": 0.193
       },
       "holdout": {
-        "attempts": 41,
+        "attempts": 42,
         "unique_tasks": 13,
-        "repetitions": 28,
+        "repetitions": 29,
         "exact_matches": 9,
-        "literal_rate": 0.2195
+        "literal_rate": 0.2143
       }
     },
     "quimica": {
       "practice": {
-        "attempts": 369,
+        "attempts": 373,
         "unique_tasks": 120,
-        "repetitions": 249,
+        "repetitions": 253,
         "exact_matches": 97,
-        "literal_rate": 0.2629
+        "literal_rate": 0.2601
       },
       "holdout": {
-        "attempts": 43,
+        "attempts": 44,
         "unique_tasks": 18,
-        "repetitions": 25,
+        "repetitions": 26,
         "exact_matches": 5,
-        "literal_rate": 0.1163
+        "literal_rate": 0.1136
       }
     }
   },
   "holdout_unicos": 116,
-  "holdout_intentos": 296,
-  "holdout_repeticiones": 180,
+  "holdout_intentos": 300,
+  "holdout_repeticiones": 184,
   "pesos_entrenados": false,
   "benchmark_independiente": false,
   "generalizacion_certificada": false,
   "aprendizaje_demostrado": false,
   "motivo": "Holdout sintético de corpus público y posiblemente repetido; sin comparación externa controlada ni entrenamiento de pesos.",
   "estado": "EXPERIMENTO_NO_CANONICO",
-  "ledger_sha256": "b0edd7cb1978d68e8a9a9c60bcdbd4849c3d3b83de7cb755e32e9061c84d3eb4",
-  "ledger_events": 2816,
+  "ledger_sha256": "8364baec5fb19730e0e81fcfbf84c8f0b803ff78f44372be48b66f1ed00042cc",
+  "ledger_events": 2854,
   "canonical_status": "CANDIDATE_PENDING_TCSA"
 }
